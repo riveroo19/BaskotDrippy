@@ -53,7 +53,7 @@ public class OutfitService {
 
     public Outfit createOutfit(Outfit outfit){ //values set in controllers
         if (existUser(outfit.getAuthorUsername())){
-            outfit.setId(this.lastId.getAndIncrement());
+            outfit.setId(this.lastId.incrementAndGet());
             this.outfits.put(this.lastId.get(), outfit);
             userService.addOutfit(outfit);
             return outfit;

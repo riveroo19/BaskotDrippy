@@ -47,7 +47,7 @@ public class GarmentService {
     }
 
     public Garment createGarment(Garment garment){
-        garment.setId(lastId.getAndIncrement());
+        garment.setId(lastId.incrementAndGet());
         this.garments.put(lastId.get(), garment);
         return garment;
     }
