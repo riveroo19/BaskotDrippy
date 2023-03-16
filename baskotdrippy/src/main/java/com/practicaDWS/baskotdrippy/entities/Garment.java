@@ -12,5 +12,11 @@ public class Garment {
 
     //private String author;
 
+    public Garment (String garmentName, String url, String type){
+        this.garmentName = garmentName;
+        this.url = url;
+        this.type = type;
+    }
+
 
 }

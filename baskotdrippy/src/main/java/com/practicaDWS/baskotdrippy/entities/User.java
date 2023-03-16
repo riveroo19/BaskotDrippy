@@ -1,9 +1,12 @@
 package com.practicaDWS.baskotdrippy.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Data
 public class User {
@@ -11,17 +14,53 @@ public class User {
     private String username; //id
     private String fullname;
     private String bio;
+    @JsonIgnore
     private String password;
     private String email;
 
-    //maybe wanna add likedOutfits later
-    //private List<Outfit> likedOutfits = new ArrayList<>();
 
-    private List<Outfit> createdOutfits = new ArrayList<>();
+    private Map<Long, Outfit> createdOutfits = new HashMap<>();
 
-    public void addOutfit(Outfit outfit){
-        this.createdOutfits.add(outfit);
+    public User (String username, String fullname, String bio, String password, String email){
+        this.username = username;
+        this.fullname = fullname;
+        this.bio = bio;
+        this.password = password;
+        this.email = email;
+    }
+
+    public Outfit addOutfit(Outfit outfit){
+        if (this.createdOutfits.put(outfit.getId(), outfit)!=null){
+            return outfit;
+        }
+        return null;
+    }
+
+    public Outfit deleteOutfit(Outfit outfit){
+        if (this.createdOutfits.remove(outfit.getId()) != null){
+            return outfit;
+        }
+        return null;
+    }
+
+    public Outfit modifyOutfit(Outfit outfit) { //if its inside will return the new outfit, if not will return null
+        if (this.createdOutfits.get(outfit.getId()) != null){
+            createdOutfits.put(outfit.getId(), outfit);
+            return outfit;
+        }
+        return null;
+    }
+
+    public void deleteGarment(Long id) {
+        for (Outfit outfit : this.createdOutfits.values()){
+            this.createdOutfits.get(outfit.getId()).deleteGarment(id);
+        }
     }
 
 
+    public void modifyGarment(Long id, Garment garment) {
+        for (Outfit outfit : this.createdOutfits.values()){
+            this.createdOutfits.get(outfit.getId()).modifyGarment(id, garment);
+        }
+    }
 }
