@@ -14,7 +14,6 @@ public class User {
     private String username; //id
     private String fullname;
     private String bio;
-    @JsonIgnore
     private String password;
     private String email;
 
@@ -51,6 +50,10 @@ public class User {
         return null;
     }
 
+    public void addGarment(Long outfitId, Garment garment) {
+        this.createdOutfits.get(outfitId).addGarment(garment);
+    }
+
     public void deleteGarment(Long id) {
         for (Outfit outfit : this.createdOutfits.values()){
             this.createdOutfits.get(outfit.getId()).deleteGarment(id);
@@ -63,4 +66,6 @@ public class User {
             this.createdOutfits.get(outfit.getId()).modifyGarment(id, garment);
         }
     }
+
+
 }

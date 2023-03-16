@@ -1,6 +1,8 @@
 package com.practicaDWS.baskotdrippy.services;
 
 import com.practicaDWS.baskotdrippy.entities.Garment;
+import com.practicaDWS.baskotdrippy.entities.Outfit;
+import com.practicaDWS.baskotdrippy.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +22,13 @@ public class GarmentService {
     @Autowired
     UserService userService;
 
+    //constructors
+    public GarmentService(){
+        createGarment(new Garment("airforce1", "nike.com", "zapatillas"));
+    }
+
+
+    //CRUD functionalities
     public Collection<Garment> getGarments(){
         return this.garments.values().stream().toList();
     }

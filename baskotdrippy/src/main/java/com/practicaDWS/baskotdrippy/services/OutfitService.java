@@ -19,6 +19,12 @@ public class OutfitService {
     @Autowired
     UserService userService;
 
+    //constructors
+    public OutfitService(){
+
+    }
+
+    //CRUD functionalities
     public Collection<Outfit> getOutfits (){
         //if we want to make cascade deletion, we have to check outfit by outfit if the owner still exists, and if not, that means that user has been deleted, so its outfits too
         for (Outfit outfit : outfits.values()){
@@ -49,6 +55,7 @@ public class OutfitService {
         if (existUser(outfit.getAuthorUsername())){
             outfit.setId(this.lastId.getAndIncrement());
             this.outfits.put(this.lastId.get(), outfit);
+            userService.addOutfit(outfit);
             return outfit;
         }
         return null;
@@ -70,6 +77,8 @@ public class OutfitService {
     public void addGarment (Garment garment, Long outfitId){ //values set in controllers: the controller will collect the garment by its id and construct it
         if (this.outfits.containsKey(outfitId)){
             this.outfits.get(outfitId).addGarment(garment);
+            String username = this.outfits.get(outfitId).getAuthorUsername();
+            this.userService.addGarment(username, outfitId, garment);
         };
     }
 
