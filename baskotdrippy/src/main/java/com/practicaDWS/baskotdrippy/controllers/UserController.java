@@ -1,5 +1,6 @@
 package com.practicaDWS.baskotdrippy.controllers;
 
+import com.practicaDWS.baskotdrippy.entities.Outfit;
 import com.practicaDWS.baskotdrippy.entities.User;
 import com.practicaDWS.baskotdrippy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class UserController {
         if (user==null){
             return "redirect:/error.html";
         }
-        //model.addAttribute("user", user);
-        return "redirect:/contacts.html";
+        model.addAttribute("user", user);
+        model.addAttribute("outfits", user.getCreatedOutfits().values());
+        return "prueba1";
     }
 
     @GetMapping("/users/deleteUser/{username}")

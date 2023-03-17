@@ -5,6 +5,21 @@
     <title>Title</title>
 </head>
 <body>
+    {{#user}}
+    <li>Nickname: {{username}}</li>
+    <li>Nombre: {{fullname}}</li>
+    <li>Bio: {{bio}}</li>
+    <li>Email: {{email}}</li>
+    {{/user}}
+    <li>Outfits:
+        <ul>
+            <li>{{#outfits}}<!-- Accede a la clave del mapa (nombre del outfit) -->
+                <h2>{{outfitName}}</h2>  <!-- Accede al valor del mapa (objeto Outfit) -->
+                <p>{{description}}</p>
+                <p>{{authorUsername}}</p>
+                {{/outfits}}</li>
 
+        </ul>
+    </li>
 </body>
 </html>

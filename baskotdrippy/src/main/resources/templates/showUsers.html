@@ -13,17 +13,17 @@
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav" style="background: rgba(235,209,182,255);">
-        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/static"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><a href="index.html"><img class="img-fluid" src="assets/img/brands/logisho.jpg" width="134" height="64"></a>
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><a href="index.html"><img class="img-fluid" src="assets/img/brands/logisho.jpg" width="134" height="64"></a>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="/users"><span style="color: rgb(0, 0, 0);">Usuarios</span></a></li>
+                    <li class="nav-item"><a class="nav-link activate" href="/users"><span style= "color: rgb(0, 0, 1);">Usuarios</span></a></li>
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="outfits.html"><span style="color: rgb(0, 0, 1);">Outfits</span></a></li>
-                    <li class="nav-item"><a class="nav-link" href="garments.html"><span style="color: rgb(0, 0, 1);">Prendas</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="outfits.html"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">Outfits</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="garments.html"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">Prendas</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="team.html"><span style="color: rgb(0, 0, 1);">About</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="team.html"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">About</span></a></li>
                 </ul><a class="btn btn-primary shadow" role="button" href="error.html">Registrarse</a>
             </div>
         </div>
@@ -34,9 +34,9 @@
     <div class="row user-list">
         <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">{{#users}}
 <li><div class="user-container"><a class="user-avatar" href="#"><img class="rounded-circle img-fluid" src="assets/img/avatar.jpg" width="48" height="48"/></a>
-    <p class="user-name"><a href="/users/{{username}}">{{username}}</a><span>Top contribuidores</span></p>
+    <p class="user-name"><a href="/users/{{username}}">{{username}}</a><span>{{fullname}}</span></p>
     </div></li>
-{{users}}</div>
+{{/users}}</div>
     </div>
     <footer class="bg-primary-gradient"></footer>
     <ul class="list-group"></ul>
