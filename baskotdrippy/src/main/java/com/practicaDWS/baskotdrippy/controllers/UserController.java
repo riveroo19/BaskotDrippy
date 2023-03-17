@@ -19,7 +19,7 @@ public class UserController {
 
         model.addAttribute("users", this.userService.getUsers());
 
-        return "prueba1";
+        return "showUsers";
     }
 
     @GetMapping("/users/{username}") //show any user details
