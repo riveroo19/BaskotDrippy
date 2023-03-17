@@ -35,7 +35,7 @@ public class UserController {
     }
 
     @GetMapping("/users/deleteUser/{username}")
-    public String deleteUser(Model model, @PathVariable("username") String username){
+    public String deleteUser(@PathVariable("username") String username){
         User user = this.userService.deleteUser(username);
         if (user==null){
             return "error.html";
