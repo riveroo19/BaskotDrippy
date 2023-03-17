@@ -1,6 +1,8 @@
 package com.practicaDWS.baskotdrippy.RESTcontrollers;
 
+import com.practicaDWS.baskotdrippy.entities.Outfit;
 import com.practicaDWS.baskotdrippy.entities.User;
+import com.practicaDWS.baskotdrippy.services.OutfitService;
 import com.practicaDWS.baskotdrippy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,6 +16,8 @@ import java.util.Collection;
 public class UserRESTController {
     @Autowired
     UserService userService;
+    @Autowired
+    OutfitService outfitService;
 
     //CRUD functionalities
     @GetMapping("/users")
@@ -39,7 +43,7 @@ public class UserRESTController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/users/{username}")
+    @PutMapping("/users/{username}") //change to patch
     public ResponseEntity<User> modifyUser(@PathVariable("username") String username, @RequestBody User user){
         User user1 = this.userService.modifyUser(username, user);
         if (user1!=null){
@@ -58,4 +62,38 @@ public class UserRESTController {
     }
 
     //others
+    //not sure if necessary (you can delete an Outfit with deleteMapping /outfits/{id})
+
+    @PatchMapping("/users/{username}/addOutfit")
+    public ResponseEntity<User> addOutfit(@PathVariable("username") String username, @RequestBody Outfit outfit){
+        if (outfit.getAuthorUsername().equals(username)){
+            Outfit outfit1 = this.outfitService.createOutfit(outfit);
+            if (outfit1!=null){ //the user exists
+                return new ResponseEntity<>(this.userService.getUserById(username), HttpStatus.CREATED);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PatchMapping("/users/{username}/quitOutfit/{id}")
+    public ResponseEntity<User> quitOutfit(@PathVariable("username") String username, @PathVariable("id") Long id){
+        if (this.outfitService.getOutfitById(id).getAuthorUsername().equals(username) && this.userService.getUserById(username).getCreatedOutfits().containsKey(id)){
+            Outfit outfit = this.outfitService.deleteOutfit(id);
+            if (outfit!=null && this.userService.getUserById(username)!=null){
+                return new ResponseEntity<>(this.userService.getUserById(username), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+    //same as above
+    @PatchMapping("/users/{username}/modifyOutfit/{id}")
+    public ResponseEntity<User> modifyOutfit(@PathVariable("username") String username, @PathVariable("id") Long id, @RequestBody Outfit outfit){
+        if (this.outfitService.getOutfitById(id).getAuthorUsername().equals(username) && this.userService.getUserById(username).getCreatedOutfits().containsKey(id)){
+            Outfit outfit1 = this.outfitService.modifyOutfit(id, outfit);
+            if (outfit1!=null && this.userService.getUserById(username)!=null){
+                return new ResponseEntity<>(this.userService.getUserById(username), HttpStatus.OK);
+            }
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }

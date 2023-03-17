@@ -35,11 +35,8 @@ public class User {
         return null;
     }
 
-    public Outfit deleteOutfit(Outfit outfit){
-        if (this.createdOutfits.remove(outfit.getId()) != null){
-            return outfit;
-        }
-        return null;
+    public Outfit deleteOutfit(Long idOutfit){
+        return this.createdOutfits.remove(idOutfit); //if null, return null, if not return the removed outfit
     }
 
     public Outfit modifyOutfit(Outfit outfit) { //if its inside will return the new outfit, if not will return null

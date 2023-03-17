@@ -63,9 +63,9 @@ public class UserService {
         return null;
     }
 
-    public Outfit deleteOutfit (Outfit outfit, String username){ //will be called by outfitService -> data received in outfit controllers
+    public Outfit deleteOutfit (Long idOutfit, String username){ //will be called by outfitService -> data received in outfit controllers
         if (this.users.containsKey(username)){
-            return this.users.get(username).deleteOutfit(outfit);
+            return this.users.get(username).deleteOutfit(idOutfit);
         }
         return null;
     }
@@ -80,9 +80,7 @@ public class UserService {
     //garments
 
     public void addGarment(String username, Long outfitId, Garment garment) {
-        for (User user : this.users.values()){
-            this.users.get(username).addGarment(outfitId, garment);
-        }
+        this.users.get(username).addGarment(outfitId, garment);
     }
 
     public void deleteGarment(Long garmentId) {

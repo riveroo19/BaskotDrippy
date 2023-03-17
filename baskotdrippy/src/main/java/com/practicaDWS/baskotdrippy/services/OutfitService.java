@@ -36,14 +36,18 @@ public class OutfitService {
     }
 
     public Outfit getOutfitById (Long id){
-        return this.outfits.get(id);
+        if (this.existUser(this.outfits.get(id).getAuthorUsername())){ //if the user isn't registered because it has been deleted, you shouldn't be able to return it
+            return this.outfits.get(id);
+        }
+        this.outfits.remove(id); //and you must delete it instead
+        return null;
     }
 
     public Outfit deleteOutfit(Long id){
         Outfit outfit = this.outfits.get(id);
         if (outfit!=null){//must delete this outfit from his user's outfits list
             if (existUser(outfit.getAuthorUsername())){
-                this.userService.deleteOutfit(outfit, outfit.getAuthorUsername());
+                this.userService.deleteOutfit(id, outfit.getAuthorUsername());
             }
             this.outfits.remove(id);
             return outfit;
@@ -62,7 +66,7 @@ public class OutfitService {
     }
 
     public Outfit modifyOutfit(Long id, Outfit outfit){ //values set in controllers
-        if (this.outfits.get(id)!=null && existUser(outfit.getAuthorUsername())){ //if the user doesn't exist (or bad introduced), won't change it
+        if (this.outfits.containsKey(id) && existUser(outfit.getAuthorUsername()) && this.outfits.get(id).getAuthorUsername().equals(outfit.getAuthorUsername())){ //if the user doesn't exist (or bad introduced), won't change it
             outfit.setOutfitElements(this.outfits.get(id).getOutfitElements()); //set old outfit elements bc this method will only change
             outfit.setId(id);
             this.userService.modifyOutfit(outfit, outfit.getAuthorUsername());
@@ -74,13 +78,6 @@ public class OutfitService {
 
     //garments functionalities (it will add/delete/modify one garment in any outfit that wears it)
 
-    public void addGarment (Garment garment, Long outfitId){ //values set in controllers: the controller will collect the garment by its id and construct it
-        if (this.outfits.containsKey(outfitId)){
-            this.outfits.get(outfitId).addGarment(garment);
-            String username = this.outfits.get(outfitId).getAuthorUsername();
-            this.userService.addGarment(username, outfitId, garment);
-        };
-    }
 
     public void quitGarment (Long garmentId, Long outfitId){
         if (this.outfits.containsKey(outfitId)){
