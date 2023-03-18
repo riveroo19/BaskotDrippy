@@ -16,12 +16,4 @@ document.addEventListener('DOMContentLoaded', function() {
 		hoverAnimationEl.addEventListener('mouseenter', function(e){ e.target.classList.add('animated', e.target.dataset.bssHoverAnimate) });
 		hoverAnimationEl.addEventListener('mouseleave', function(e){ e.target.classList.remove('animated', e.target.dataset.bssHoverAnimate) });
 	});
-
-	var products = document.querySelectorAll('[data-bss-dynamic-product]');
-
-	for (var product of products) {
-		var param = product.dataset.bssDynamicProductParam;
-		product.dataset.reflowProduct = new URL(location.href).searchParams.get(param)
-	}
-
 }, false);

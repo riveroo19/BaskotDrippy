@@ -47,8 +47,8 @@ public class UserController {
             return "redirect:/error";
         }
         model.addAttribute("user", user);
-        model.addAttribute("outfits", user.getCreatedOutfits().values());
-        return "prueba1";
+        model.addAttribute("outfits", user.getCreatedOutfits().values().stream().toList());
+        return "detailUser";
     }
 
     @GetMapping("/users/deleteUser/{username}")
@@ -57,7 +57,7 @@ public class UserController {
         if (user==null){
             return "redirect:/error";
         }
-        return "redirect:deletionSuccess";
+        return "deletionSuccess";
     }
 
     @PostMapping("/users/createUser") //redirected here when press register button

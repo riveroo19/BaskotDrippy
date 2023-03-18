@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html class="text-center" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Team - Brand</title>
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abyssinica+SIL&amp;display=swap">
+    <link rel="stylesheet" href="../assets/css/NZButtonAddDelete-2.css">
+    <link rel="stylesheet" href="../assets/css/Pretty-User-List-.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav" style="background: rgba(235,209,182,255);">
+        <div class="container"><a class="navbar-brand d-flex align-items-center" href="/"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><a href="index.html"></a>
+            <div class="collapse navbar-collapse" id="navcol-1"><a href="../index.html"><img src="../assets/img/brands/logisho1.jpg" width="215" height="53" /></a>
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link active nav-link activate" href="/users"><span style="color: rgb(0, 0, 1);"><span style="font-weight: normal !important;">Usuarios</span></span></a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="/outfits"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">Outfits</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="/garments"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">Prendas</span></a></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"></li>
+                    <li class="nav-item"><a class="nav-link" href="../team.html"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">About</span></a></li>
+                </ul><a class="btn btn-primary" role="button" href="../login.html">Iniciar sesión</a>
+            </div>
+        </div>
+    </nav><section class="py-5">
+    {{#user}}
+    <h1 class="text-center text-dark shadow-lg"><strong>{{username}}</strong></h1>
+</section>
+    <div class="btn-group" role="group" style="font-size: 11PX;margin-top: 10PX;"></div>
+    <div class="col offset-xl-7"><a class="btn btn-primary" role="button" style="background-color: rgb(216,74,56);font-size: 12PX;" href="/users/deleteUser/{{username}}">Borrar Usuario</a><a class="btn btn-primary" role="button" style="background-color: #efefef;color: #0B0B0B;font-size: 12PX;margin-right: -7px;" href="/users/modifyUser/{{username}}">Modificar Usuario</a></div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 style="font-family: 'Abyssinica SIL', serif;">{{username}} : {{fullname}}<br><br></h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p style="font-family: 'Abyssinica SIL', serif;"><br>{{bio}}</p>
+            </div>
+            <div class="col-md-6">
+                <p style="font-family: 'Abyssinica SIL', serif;"><br>Contact: {{email}} {{/user}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-xl-1 offset-xl-0"><a class="btn btn-primary" role="button" style="margin: 0px;color: rgb(245,249,245);background-color: rgb(53,170,71);font-size: 12PX;width: 86.9219px;padding-left: 11px;padding-right: 14px;" href="../createOutfit.html">Añadir Outfit</a></div><div class="row user-list"> {{#outfits}}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+        <div class="user-container"><a class="user-avatar" href="/outfits/{{id}}"><img class="rounded-circle img-fluid" src="../assets/img/gafas.png" width="48" height="48"/></a>
+            <p class="user-name"><a href="/outfits/{{id}}">{{outfitName}}</a><span>Baskot Drippy</span></p>
+        </div>
+    </div>{{/outfits}}
+</div>
+    <footer class="bg-primary-gradient"></footer>
+    <ul class="list-group"></ul>
+    <div class="w-100"></div>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bold-and-bright.js"></script>
+</body>
+
+</html>

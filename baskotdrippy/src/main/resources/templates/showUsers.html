@@ -7,6 +7,7 @@
     <title>Team - Brand</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abyssinica+SIL&amp;display=swap">
     <link rel="stylesheet" href="assets/css/Pretty-User-List-.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -28,23 +29,23 @@
             </div>
         </div>
     </nav>
+    <div class="row user-list">
+        <div class="col"><section class="py-5">
     <section class="py-5">
         <h1 class="text-center text-dark shadow-lg"><strong>Usuarios</strong></h1>
     </section>
-    <div class="row user-list">{{#users}}
-<div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
-    <div>
-                <div class="user-container"><a class="user-avatar" href="/users/{{username}}"><img class="rounded-circle img-fluid" src="assets/img/team/ivan.png" width="48" height="48" /></a>
-                    <p class="user-name"><a href="/users/{{username}}">{{username}}</a><span>{{fullname}}</span></p>
-                </div>
-        </div>
-</div>
-{{/users}}</div>
+</section></div>
+    </div>
     <footer class="bg-primary-gradient"></footer>
     <ul class="list-group"></ul>
-    <div class="w-100"></div>
+    <div class="w-100"></div><div class="row user-list"> {{#users}}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+        <div class="user-container"><a class="user-avatar" href="/users/{{username}}"><img class="rounded-circle img-fluid" src="assets/img/team/ivan.png" width="48" height="48"/></a>
+            <p class="user-name"><a href="/users/{{username}}">{{username}}</a><span>{{fullname}}</span></p>
+        </div>
+    </div>{{/users}}
+</div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>
 </body>
 

@@ -4,9 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>Team - Brand</title>
+    <title>Products - Brand</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abyssinica+SIL&amp;display=swap">
     <link rel="stylesheet" href="assets/css/Pretty-User-List-.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -28,14 +29,17 @@
             </div>
         </div>
     </nav>
-    <section class="py-5">
-        <h1 class="text-center text-dark shadow-lg"><strong>Usuarios</strong></h1>
-    </section>
-    <footer class="bg-primary-gradient"></footer>
-    <ul class="list-group"></ul>
-    <div class="w-100"></div>
+    <section class="py-5"><section class="py-5">
+    <h1 class="text-center text-dark shadow-lg"><strong>Prendas</strong></h1>
+</section></section>
+    <footer class="bg-primary-gradient"></footer><div class="row user-list"> {{#garments}}
+    <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+        <div class="user-container"><a class="user-avatar" href="/garment/{{id}}"><img class="rounded-circle img-fluid" src="assets/img/prenda.jpg" width="48" height="48"/></a>
+            <p class="user-name"><a href="/garment/{{id}}">{{garmentName}}</a><span>{{type}}</span></p>
+        </div>
+    </div>{{/garments}}
+</div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bs-init.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>
 </body>
 
