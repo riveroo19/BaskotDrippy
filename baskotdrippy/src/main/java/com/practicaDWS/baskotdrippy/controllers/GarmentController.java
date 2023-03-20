@@ -40,8 +40,11 @@ public class GarmentController {
 
     @GetMapping("/garments/createGarment")
     public String createGarment(@RequestParam("garmentName") String garmentName, @RequestParam("type") String type, @RequestParam("url") String url){
-        Garment garment = this.garmentService.createGarment(new Garment(garmentName, url, type));
-        return "redirect:/garments";
+        if (garmentName.length()!=0){
+            Garment garment = this.garmentService.createGarment(new Garment(garmentName, url, type));
+            return "redirect:/garments";
+        }
+        return "redirect:/error";
     }
 
     @GetMapping("/garments/updateGarment/{id}")
@@ -60,5 +63,6 @@ public class GarmentController {
         String returnvalue = "redirect:/garments/" + id;
         return returnvalue;
     }
+
 
 }

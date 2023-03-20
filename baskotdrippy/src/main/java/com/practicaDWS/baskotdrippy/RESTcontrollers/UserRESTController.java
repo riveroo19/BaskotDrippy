@@ -43,7 +43,7 @@ public class UserRESTController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/users/{username}") //change to patch
+    @PatchMapping("/users/{username}")
     public ResponseEntity<User> modifyUser(@PathVariable("username") String username, @RequestBody User user){
         User user1 = this.userService.modifyUser(username, user);
         if (user1!=null){

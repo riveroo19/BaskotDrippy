@@ -3,6 +3,7 @@ package com.practicaDWS.baskotdrippy.controllers;
 
 import com.practicaDWS.baskotdrippy.entities.Garment;
 import com.practicaDWS.baskotdrippy.entities.Outfit;
+import com.practicaDWS.baskotdrippy.services.GarmentService;
 import com.practicaDWS.baskotdrippy.services.OutfitService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,8 @@ public class OutfitController {
 
     @Autowired
     OutfitService outfitService;
+    @Autowired
+    GarmentService garmentService;
 
     @GetMapping("/outfits")
     public String getOutfits(Model model){
@@ -32,6 +35,7 @@ public class OutfitController {
         }
         model.addAttribute("outfit", outfit);
         model.addAttribute("garments", outfit.getOutfitElements().values());
+        model.addAttribute("idOutfit", outfit.getId());
         return "detailOutfit";
     }
 
@@ -46,12 +50,15 @@ public class OutfitController {
 
     @PostMapping("/outfits/createOutfit")
     public String createOutfit(@RequestParam("outfitName") String outfitName, @RequestParam("authorUsername") String authorUsername, @RequestParam("description") String description){
-        Outfit outfit= this.outfitService.createOutfit(new Outfit(outfitName, description, authorUsername));
-        if (outfit==null){
-            return "redirect:/error";
+        if (outfitName.length()!=0){
+            Outfit outfit= this.outfitService.createOutfit(new Outfit(outfitName, description, authorUsername));
+            if (outfit==null){
+                return "redirect:/error";
+            }
+            String returnvalue = "redirect:/users/" + authorUsername;
+            return returnvalue;
         }
-        String returnvalue = "redirect:/users/" + authorUsername;
-        return returnvalue;
+        return "redirect:/error";
     }
 
     @GetMapping("/outfits/updateOutfit/{id}")
@@ -71,5 +78,30 @@ public class OutfitController {
         String returnvalue = "redirect:/users/" + authorUsername;
         return returnvalue;
     }
+
+    @GetMapping("/outfits/{idOutfit}/quitGarment/{id}")
+    public String quitGarment(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
+        this.outfitService.quitGarment(id, idOutfit);
+        String returnvalue = "redirect:/outfits/"+idOutfit;
+        return returnvalue;
+    }
+
+    @GetMapping("/outfits/{idOutfit}/addGarment")
+    public String addGarment(Model model, @PathVariable("idOutfit") Long idOutfit){
+        model.addAttribute("garments", this.garmentService.getGarments());
+        model.addAttribute("idOutfit", idOutfit);
+        return "garmentsToAdd";
+    }
+
+    @GetMapping("/outfits/{idOutfit}/{id}/success")
+    public String addGarmentSuccess(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
+        if (this.outfitService.getOutfitById(idOutfit)!=null && this.garmentService.getGarmentById(id)!=null) {
+            this.outfitService.getOutfitById(idOutfit).addGarment(this.garmentService.getGarmentById(id));
+            String returnvalue = "redirect:/outfits/"+idOutfit;
+            return returnvalue;
+        }
+        return "redirect:/error";
+    }
+
 
 }

@@ -44,7 +44,7 @@ public class OutfitRESTController {
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
-    @PutMapping("/outfits/{id}") //change it: patchmapping and do 2 pathces
+    @PatchMapping("/outfits/{id}")
     public ResponseEntity<Outfit> modifyOutfit(@PathVariable("id") Long id, @RequestBody Outfit outfit){
         Outfit outfit1 = this.outfitService.modifyOutfit(id, outfit);
         if (outfit1!=null){
