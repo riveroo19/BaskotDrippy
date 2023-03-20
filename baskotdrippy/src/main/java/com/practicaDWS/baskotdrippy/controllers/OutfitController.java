@@ -25,18 +25,18 @@ public class OutfitController {
     public String getOutfitById(Model model, @PathVariable("id") Long id){
         Outfit outfit = this.outfitService.getOutfitById(id);
         if (outfit==null){
-            return "redirect:error";
+            return "redirect:/error";
         }
         model.addAttribute("outfit", outfit);
         model.addAttribute("garments", outfit.getOutfitElements().values());
-        return "showOutfit";
+        return "detailOutfit";
     }
 
     @GetMapping("/outfits/deleteOutfit/{id}")
     public String deleteOutfit(@PathVariable("id")Long id){
         Outfit outfit = this.outfitService.deleteOutfit(id);
         if(outfit==null){
-            return "redirect:error";
+            return "redirect:/error";
         }
         return "deletionSuccess";
     }
