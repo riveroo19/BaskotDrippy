@@ -15,17 +15,13 @@ public class UserController {
     UserService userService;
 
     //extra functionalities
-    @GetMapping("/error")
-    public String error(){
-        return "error";
-    }
 
     @GetMapping("/login")
     public String pseudoLogin(Model model, @RequestParam("username") String username, @RequestParam("password") String password){
         User user = this.userService.getUserById(username);
         if (user==null || !user.getPassword().equals(password)){
             return "redirect:/error";
-            //return "notRegistered";
+            //return "notRegistered"; not implemented, so we return error instead
         }
         return this.getUserById(model, username);
     }

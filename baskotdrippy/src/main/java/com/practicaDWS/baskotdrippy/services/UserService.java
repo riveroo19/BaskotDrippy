@@ -28,7 +28,10 @@ public class UserService {
     }
 
     public User getUserById(String username){
-        return this.users.get(username); //if doesnt exists, returns null
+        if (this.users.containsKey(username)){
+            return this.users.get(username); //if doesnt exists, returns null, but to avoid errors we check key before
+        }
+        return null;
     }
 
     public User deleteUser (String username){

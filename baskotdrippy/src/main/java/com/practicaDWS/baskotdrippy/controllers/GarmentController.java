@@ -23,7 +23,7 @@ public class GarmentController {
     public String getGarmentById(Model model, @PathVariable("id") Long id){
         Garment garment = this.garmentService.getGarmentById(id);
         if (garment==null){
-            return "redirect:error";
+            return "redirect:/error";
         }
         model.addAttribute("garment", garment);
         return "detailGarment";

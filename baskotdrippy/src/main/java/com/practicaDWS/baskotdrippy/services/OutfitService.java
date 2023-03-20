@@ -36,10 +36,12 @@ public class OutfitService {
     }
 
     public Outfit getOutfitById (Long id){
-        if (this.existUser(this.outfits.get(id).getAuthorUsername())){ //if the user isn't registered because it has been deleted, you shouldn't be able to return it
-            return this.outfits.get(id);
+        if (this.outfits.containsKey(id)){//errors if we dont check this
+            if (this.existUser(this.outfits.get(id).getAuthorUsername())){ //if the user isn't registered because it has been deleted, you shouldn't be able to return it
+                return this.outfits.get(id);
+            }
+            this.outfits.remove(id); //and you must delete it instead
         }
-        this.outfits.remove(id); //and you must delete it instead
         return null;
     }
 

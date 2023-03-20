@@ -34,7 +34,10 @@ public class GarmentService {
     }
 
     public Garment getGarmentById(Long id){
-        return this.garments.get(id);
+        if (this.garments.containsKey(id)){//do this way, if not will throw some errors (exceptions)
+            return this.garments.get(id);
+        }
+        return null;
     }
 
     public Garment deleteGarment (Long id){
