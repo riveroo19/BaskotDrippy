@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abyssinica+SIL&amp;display=swap">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="../assets/css/NZButtonAddDelete-2.css">
     <link rel="stylesheet" href="../assets/css/Pretty-User-List-.css">
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -33,13 +34,20 @@
     {{#user}}
     <h1 class="text-center text-dark shadow-lg"><strong>{{username}}</strong></h1>
 </section>
-    <div class="btn-group" role="group" style="font-size: 11PX;margin-top: 10PX;"></div>
-    <div class="col offset-xl-7"><a class="btn btn-primary" role="button" style="background-color: rgb(216,74,56);font-size: 12PX;" href="/users/deleteUser/{{username}}">Borrar Usuario</a><a class="btn btn-primary" role="button" style="background-color: #efefef;color: #0B0B0B;font-size: 12PX;margin-right: -7px;" href="/users/modifyUser/{{username}}">Modificar Usuario</a></div>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h1 style="font-family: 'Abyssinica SIL', serif;">{{username}} : {{fullname}}<br><br></h1>
-            </div>
+            <div class="col-md-12"><img src="../assets/img/brands/logisho1.jpg"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-12"></div>
+        </div>
+    </div>
+    <div class="btn-group" role="group" style="font-size: 11PX;margin-top: 10PX;"></div>
+    <div class="container">
+        <div class="row"><div class="col-md-4"><a class="waves-effect waves-light btn" href="/users/updateUser/{{username}}">Modificar</a></div><div class="col-md-4">
+    <h2>{{username}}: {{fullname}}</h2>
+</div>
+            <div class="col-md-4"><a class="waves-effect waves-light btn" href="/users/deleteUser/{{username}}">Borrar</a></div>
         </div>
         <div class="row">
             <div class="col-md-6">
@@ -49,19 +57,23 @@
                 <p style="font-family: 'Abyssinica SIL', serif;"><br>Contact: {{email}} {{/user}}</p>
             </div>
         </div>
-    </div>
-    <div class="col-xl-1 offset-xl-0"><a class="btn btn-primary" role="button" style="margin: 0px;color: rgb(245,249,245);background-color: rgb(53,170,71);font-size: 12PX;width: 86.9219px;padding-left: 11px;padding-right: 14px;" href="../createOutfit.html">Añadir Outfit</a></div><div class="row user-list"> {{#outfits}}
+    </div><div class="row user-list"> {{#outfits}}    
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
         <div class="user-container"><a class="user-avatar" href="/outfits/{{id}}"><img class="rounded-circle img-fluid" src="../assets/img/gafas.png" width="48" height="48"/></a>
-            <p class="user-name"><a href="/outfits/{{id}}">{{outfitName}}</a><span>Baskot Drippy</span></p>
+            <p class="user-name"><a href="/outfits/{{id}}">{{outfitName}}</a><span>Baskot Drippy</span></p><a class="user-delete" href="/outfits/deleteOutfit/{{id}}"><i class="fa fa-remove"></i></a>
         </div>
+        <a role="button" style="color: #0B0B0;font-size: 13PX;" href="/outfits/updateOutfit/{{id}}">Modificar</a>
     </div>{{/outfits}}
 </div>
     <footer class="bg-primary-gradient"></footer>
     <ul class="list-group"></ul>
     <div class="w-100"></div>
+    <div class="row">
+        <div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="/users/{{username}}/createOutfit"><i class="fa fa-star"></i>Crear</a></div>
+    </div>
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bold-and-bright.js"></script>
+    <script src="../assets/js/button-materialize-materialize.min.js"></script>
 </body>
 
 </html>

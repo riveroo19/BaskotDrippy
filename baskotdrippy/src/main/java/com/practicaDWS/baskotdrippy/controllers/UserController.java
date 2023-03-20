@@ -16,14 +16,15 @@ public class UserController {
 
     //extra functionalities
 
-    @GetMapping("/login")
-    public String pseudoLogin(Model model, @RequestParam("username") String username, @RequestParam("password") String password){
+    @GetMapping("/login") //this only checks if the user exists, only decoration for the web
+    public String pseudoLogin(@RequestParam("username") String username, @RequestParam("password") String password){
         User user = this.userService.getUserById(username);
         if (user==null || !user.getPassword().equals(password)){
             return "redirect:/error";
             //return "notRegistered"; not implemented, so we return error instead
         }
-        return this.getUserById(model, username);
+        String returnValue = "redirect:/users/" + username;
+        return returnValue;
     }
 
     //user functionalities
@@ -44,6 +45,7 @@ public class UserController {
         }
         model.addAttribute("user", user);
         model.addAttribute("outfits", user.getCreatedOutfits().values().stream().toList());
+        model.addAttribute("username", user.getUsername());
         return "detailUser";
     }
 
@@ -59,11 +61,44 @@ public class UserController {
     @PostMapping("/users/createUser") //redirected here when press register button
     public String createUser(@RequestParam("username") String username, @RequestParam("email") String email,
          @RequestParam("fullname") String fullname,  @RequestParam("bio") String bio,  @RequestParam("password") String password, @RequestParam("confirm") String confirm){
-        User user = this.userService.createUser(new User(username,fullname,bio,password,email));
-        if (user==null){
+        if (!password.equals(confirm) || username.length()==0){
             return "redirect:/error";
+        }else {
+            User user = this.userService.createUser(new User(username,fullname,bio,password,email));
+            if (user==null){
+                return "redirect:/error";
+            }
+            return "redirect:/users";
         }
-        return "redirect:/users";
+
+    }
+
+    @GetMapping("/users/updateUser/{username}")
+    public String updateUser(Model model, @PathVariable("username") String username){
+        User user = this.userService.getUserById(username);
+        model.addAttribute("user", user);
+        return "updateUser";
+    }
+
+    @GetMapping("/users/modifySuccess")
+    public String modifySuccess(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("fullname") String fullname,
+                                @RequestParam("bio") String bio,  @RequestParam("password") String password, @RequestParam("confirm") String confirm, @RequestParam("confirm1") String confirm1){
+        if (!confirm.equals(confirm1) || !password.equals(this.userService.getUserById(username).getPassword())){
+            return "redirect:/error";
+        }else {
+            User user = this.userService.modifyUser(username, new User(username, fullname, bio, password, email));
+            if (user==null){
+                return "redirect:/error";
+            }
+            String returnvalue = "redirect:/users/" + username;
+            return returnvalue;
+        }
+    }
+
+    @GetMapping("/users/{username}/createOutfit")
+    public String createOutfit(Model model, @PathVariable("username") String username){
+        model.addAttribute("username", username);
+        return "createOutfit";
     }
 
 

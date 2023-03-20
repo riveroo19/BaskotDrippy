@@ -45,19 +45,20 @@ public class GarmentController {
     }
 
     @GetMapping("/garments/updateGarment/{id}")
-    public String modifyGarment(Model model, @PathVariable("id") Long id){
+    public String updateGarment(Model model, @PathVariable("id") Long id){
         Garment garment = this.garmentService.getGarmentById(id);
         model.addAttribute("garment", garment);
         return "updateGarment";
     }
 
     @GetMapping("/garments/modifySuccess")
-    public String modifySuccess(Model model, @RequestParam("id") Long id, @RequestParam("garmentName") String garmentName, @RequestParam("type") String type, @RequestParam("url") String url){
+    public String modifySuccess(@RequestParam("id") Long id, @RequestParam("garmentName") String garmentName, @RequestParam("type") String type, @RequestParam("url") String url){
         Garment garment = this.garmentService.modifyGarment(id, new Garment(garmentName, url, type));
         if (garment==null){
             return "redirect:/error";
         }
-        return this.getGarmentById(model, id);
+        String returnvalue = "redirect:/garments/" + id;
+        return returnvalue;
     }
 
 }
