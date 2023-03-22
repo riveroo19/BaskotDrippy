@@ -1,0 +1,20 @@
+#clock {
+  margin: 20px auto;
+  padding: 0;
+  width: 100%;
+  text-align: center;
+  line-height: 40px;
+  color: #6c4e59;
+  font-size: 34px;
+  font-family: arial;
+}
+
+#clock {
+  font-size: 18px;
+  width: 100px;
+  margin: 0px;
+  text-align: center;
+  border: 0px solid black;
+  border-radius: 0px;
+}
+
