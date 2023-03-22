@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abyssinica+SIL&amp;display=swap">
+    <link rel="stylesheet" href="../assets/css/hour.css">
     <link rel="stylesheet" href="../assets/css/NZButtonAddDelete-2.css">
     <link rel="stylesheet" href="../assets/css/Pretty-User-List-.css">
     <link rel="stylesheet" href="../assets/css/style.css">
@@ -36,7 +37,7 @@
     <div class="container">
         <div class="row"><div class="col-md-4"><a class="waves-effect waves-light btn" href="/garments/updateGarment/{{id}}">Modificar</a></div>
             <div class="col-md-4"><img src="../assets/img/prenda.jpg" width="227" height="138"></div>
-            <div class="col-md-4"><a class="waves-effect waves-light btn" href="/garments/deleteGarment/{{id}}">Borrar</a></div>
+            <div class="col-md-4"><a class="waves-effect waves-light btn" href="/garments/deleteGarment/{{id}}" onclick="return confirm('¿Seguro que quieres borrar?')">Borrar</a></div>
         </div>
     </div>
     <div class="btn-group" role="group" style="font-size: 11PX;margin-top: 10PX;"></div>
@@ -56,6 +57,7 @@
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bold-and-bright.js"></script>
     <script src="../assets/js/button-materialize-materialize.min.js"></script>
+    <script src="../assets/js/hour.js"></script>
 </body>
 
 </html>
