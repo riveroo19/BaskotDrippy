@@ -2,9 +2,12 @@ package com.practicaDWS.baskotdrippy.services;
 
 import com.practicaDWS.baskotdrippy.entities.Garment;
 import com.practicaDWS.baskotdrippy.entities.Outfit;
+import com.practicaDWS.baskotdrippy.entities.User;
+import com.practicaDWS.baskotdrippy.repositories.OutfitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -13,8 +16,10 @@ import java.util.concurrent.atomic.AtomicLong;
 @Service
 public class OutfitService {
 
-    private Map<Long, Outfit> outfits = new ConcurrentHashMap<>();
-    private AtomicLong lastId = new AtomicLong();
+    //private Map<Long, Outfit> outfits = new ConcurrentHashMap<>();
+    //private AtomicLong lastId = new AtomicLong();
+    @Autowired
+    private OutfitRepository outfitRepository;
 
     @Autowired
     UserService userService;
@@ -26,53 +31,44 @@ public class OutfitService {
 
     //CRUD functionalities
     public Collection<Outfit> getOutfits (){
-        //if we want to make cascade deletion, we have to check outfit by outfit if the owner still exists, and if not, that means that user has been deleted, so its outfits too
-        for (Outfit outfit : outfits.values()){
-            if (!this.existUser(outfit.getAuthorUsername())){
-                this.outfits.remove(outfit.getId());
-            }
-        }
-        return this.outfits.values().stream().toList();
+        return this.outfitRepository.findAll();
     }
 
     public Outfit getOutfitById (Long id){
-        if (this.outfits.containsKey(id)){//errors if we dont check this
-            if (this.existUser(this.outfits.get(id).getAuthorUsername())){ //if the user isn't registered because it has been deleted, you shouldn't be able to return it
-                return this.outfits.get(id);
-            }
-            this.outfits.remove(id); //and you must delete it instead
+        if (this.outfitRepository.existsById(id)){//errors if we dont check this
+            return this.outfitRepository.findById(id).get();
         }
         return null;
     }
 
+    @Transactional
     public Outfit deleteOutfit(Long id){
-        Outfit outfit = this.outfits.get(id);
-        if (outfit!=null){//must delete this outfit from his user's outfits list
-            if (existUser(outfit.getAuthorUsername())){
-                this.userService.deleteOutfit(id, outfit.getAuthorUsername());
-            }
-            this.outfits.remove(id);
+        if (this.outfitRepository.existsById(id)){
+            Outfit outfit = this.outfitRepository.findById(id).get();
+            this.outfitRepository.deleteById(id); //cascade will delete those rows where this outfit appear
+            //this.userService.deleteOutfit(id, outfit.getOwner()); deprecated...
             return outfit;
         }
         return null;
     }
 
     public Outfit createOutfit(Outfit outfit){ //values set in controllers
-        if (existUser(outfit.getAuthorUsername())){
-            outfit.setId(this.lastId.incrementAndGet());
-            this.outfits.put(this.lastId.get(), outfit);
-            userService.addOutfit(outfit);
+        if (existUser(outfit.getOwner())){
+            outfit.setAuthor(userService.getUserById(outfit.getOwner())); //controllers set
+            this.outfitRepository.save(outfit);
+            //this.userService.addOutfit(outfit); deprecated...
             return outfit;
         }
         return null;
     }
 
+    @Transactional
     public Outfit modifyOutfit(Long id, Outfit outfit){ //values set in controllers
-        if (this.outfits.containsKey(id) && existUser(outfit.getAuthorUsername()) && this.outfits.get(id).getAuthorUsername().equals(outfit.getAuthorUsername())){ //if the user doesn't exist (or bad introduced), won't change it
-            outfit.setOutfitElements(this.outfits.get(id).getOutfitElements()); //set old outfit elements bc this method will only change
-            outfit.setId(id);
-            this.userService.modifyOutfit(outfit, outfit.getAuthorUsername());
-            this.outfits.put(id, outfit);
+        if (this.outfitRepository.existsById(id) && existUser(outfit.getOwner()) && this.outfitRepository.findById(id).get().getOwner().equals(outfit.getOwner())){ //if the user doesn't exist (or bad introduced), won't change it
+            outfit.setId(id); //just in case
+            outfit.setAuthor(this.outfitRepository.findById(id).get().getAuthor()); //string owner is setted by default in controllers (specified in postman/forms)
+            this.outfitRepository.save(outfit); //override
+            //this.userService.modifyOutfit(outfit, outfit.getOwner()); deprecated...
             return outfit;
         }
         return null;
@@ -82,27 +78,27 @@ public class OutfitService {
 
 
     public void quitGarment (Long garmentId, Long outfitId){
-        if (this.outfits.containsKey(outfitId)){
-            this.outfits.get(outfitId).deleteGarment(garmentId);
+        if (this.outfitRepository.existsById(outfitId)){
+            this.outfitRepository.findById(outfitId).get().deleteGarment(garmentId);
         }
     }
 
 
-    public void deleteGarment (Long garmentId){
-        for (Outfit outfit : outfits.values()){
+    /*public void deleteGarment (Long garmentId){//deprecated
+        for (Outfit outfit : outfitRepository.findAll()){
             if (!outfit.getOutfitElements().isEmpty()){
-                outfits.get(outfit.getId()).deleteGarment(garmentId);
+                outfitRepository.findById(outfit.getId()).get().deleteGarment(garmentId);
             }
         }
-    }
+    }*/
 
-    public void modifyGarment(Long id, Garment garment) {
-        for (Outfit outfit : outfits.values()){
+    /*public void modifyGarment(Long id, Garment garment) {//deprecated
+        for (Outfit outfit : outfitRepository.findAll()){
             if (!outfit.getOutfitElements().isEmpty()){
-                outfits.get(outfit.getId()).modifyGarment(id, garment);
+                outfitRepository.findById(id).get().modifyGarment(id, garment);
             }
         }
-    }
+    }*/
 
     //extra utilities
     public boolean existUser(String username){

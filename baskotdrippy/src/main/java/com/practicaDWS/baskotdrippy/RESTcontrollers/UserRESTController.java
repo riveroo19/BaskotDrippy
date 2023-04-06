@@ -66,7 +66,7 @@ public class UserRESTController {
 
     @PatchMapping("/users/{username}/addOutfit")
     public ResponseEntity<User> addOutfit(@PathVariable("username") String username, @RequestBody Outfit outfit){
-        if (outfit.getAuthorUsername().equals(username)){
+        if (outfit.getOwner().equals(username)){
             Outfit outfit1 = this.outfitService.createOutfit(outfit);
             if (outfit1!=null){ //the user exists
                 return new ResponseEntity<>(this.userService.getUserById(username), HttpStatus.CREATED);
@@ -77,7 +77,7 @@ public class UserRESTController {
 
     @PatchMapping("/users/{username}/quitOutfit/{id}")
     public ResponseEntity<User> quitOutfit(@PathVariable("username") String username, @PathVariable("id") Long id){
-        if (this.outfitService.getOutfitById(id).getAuthorUsername().equals(username) && this.userService.getUserById(username).getCreatedOutfits().containsKey(id)){
+        if (this.outfitService.getOutfitById(id).getOwner().equals(username) && this.userService.getUserById(username).existOutfit(id)){
             Outfit outfit = this.outfitService.deleteOutfit(id);
             if (outfit!=null && this.userService.getUserById(username)!=null){
                 return new ResponseEntity<>(this.userService.getUserById(username), HttpStatus.OK);
@@ -88,7 +88,7 @@ public class UserRESTController {
     //same as above
     @PatchMapping("/users/{username}/modifyOutfit/{id}")
     public ResponseEntity<User> modifyOutfit(@PathVariable("username") String username, @PathVariable("id") Long id, @RequestBody Outfit outfit){
-        if (this.outfitService.getOutfitById(id).getAuthorUsername().equals(username) && this.userService.getUserById(username).getCreatedOutfits().containsKey(id)){
+        if (this.outfitService.getOutfitById(id).getOwner().equals(username) && this.userService.getUserById(username).existOutfit(id)){
             Outfit outfit1 = this.outfitService.modifyOutfit(id, outfit);
             if (outfit1!=null && this.userService.getUserById(username)!=null){
                 return new ResponseEntity<>(this.userService.getUserById(username), HttpStatus.OK);

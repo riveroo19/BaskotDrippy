@@ -2,49 +2,82 @@ package com.practicaDWS.baskotdrippy.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
 
 @Data
+@NoArgsConstructor
+@Entity
 public class Outfit {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //id
+
     private String outfitName;
     private String description;
-    private String authorUsername;
+    private String owner;
 
-    //@JsonIgnore
-    //private User author;
+    @JsonIgnore
+    @ManyToOne
+    private User author;
 
-    //future related table between garments and outfits
-    private Map<Long, Garment> outfitElements = new HashMap<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "outfit_garment",
+            joinColumns = @JoinColumn(name = "outfit_id"),
+            inverseJoinColumns = @JoinColumn(name = "garment_id"))
+    private List<Garment> outfitElements = new ArrayList<>();
 
-    public Outfit (String outfitName, String description, String authorUsername){
+    @PreRemove
+    private void delete(){
+        this.author.deleteOutfit(id);
+        this.outfitElements.clear();
+    }
+
+    public Outfit(String outfitName, String description, String owner){
         this.outfitName = outfitName;
         this.description = description;
-        this.authorUsername = authorUsername;
+        this.owner = owner;
+    }
+
+    public Outfit(String outfitName, String description, User author){
+        this.outfitName = outfitName;
+        this.description = description;
+        this.owner = author.getUsername();
+        this.author = author;
+    }
+
+    public Outfit (String outfitName, String description){
+        this.outfitName = outfitName;
+        this.description = description;
     }
 
     public void addGarment(Garment garment) {
-        if (!this.outfitElements.containsKey(garment.getId())){
-            this.outfitElements.put(garment.getId(), garment);
+        if (!this.outfitElements.contains(garment)){
+            this.outfitElements.add(garment);
         }
     }
 
     public Garment deleteGarment(Long garmentId) {
-        if (this.outfitElements.containsKey(garmentId)){
-            return this.outfitElements.remove(garmentId);
+        for (Garment garment : outfitElements){
+            if (garmentId.equals(garment.getId())){
+                this.outfitElements.remove(garment);
+                return garment;
+            }
         }
         return null;
     }
 
 
-    public void modifyGarment(Long id, Garment garment) {
-        if (this.outfitElements.containsKey(id)){
-            this.outfitElements.put(id, garment);
+    /*public void modifyGarment(Long id, Garment garment) {//deprecated
+        for (int i = 0; i < this.outfitElements.size(); i++) {
+            if (id.equals(this.outfitElements.get(i).getId())){
+                this.outfitElements.set(i, garment);
+            }
         }
-    }
+    }*/
 }

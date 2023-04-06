@@ -34,7 +34,7 @@ public class OutfitController {
             return "redirect:/error";
         }
         model.addAttribute("outfit", outfit);
-        model.addAttribute("garments", outfit.getOutfitElements().values());
+        model.addAttribute("garments", outfit.getOutfitElements());
         model.addAttribute("idOutfit", outfit.getId());
         return "detailOutfit";
     }

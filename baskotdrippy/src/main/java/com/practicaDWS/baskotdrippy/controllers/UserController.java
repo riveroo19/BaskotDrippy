@@ -44,7 +44,7 @@ public class UserController {
             return "redirect:/error";
         }
         model.addAttribute("user", user);
-        model.addAttribute("outfits", user.getCreatedOutfits().values().stream().toList());
+        model.addAttribute("outfits", user.getCreatedOutfits());
         model.addAttribute("username", user.getUsername());
         return "detailUser";
     }
