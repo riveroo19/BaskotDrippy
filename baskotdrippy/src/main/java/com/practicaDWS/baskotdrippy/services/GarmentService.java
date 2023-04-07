@@ -1,6 +1,7 @@
 package com.practicaDWS.baskotdrippy.services;
 
 import com.practicaDWS.baskotdrippy.entities.Garment;
+import com.practicaDWS.baskotdrippy.entities.Outfit;
 import com.practicaDWS.baskotdrippy.repositories.GarmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,8 +22,8 @@ public class GarmentService {
     @Autowired
     private GarmentRepository garmentRepository;
 
-    //@Autowired
-    //OutfitService outfitService;
+    @Autowired
+    OutfitService outfitService;
     @Autowired
     //UserService userService;
 
@@ -49,7 +50,7 @@ public class GarmentService {
     @Transactional
     public Garment deleteGarment (Long id){
         if (this.garmentRepository.existsById(id)){
-            //this.outfitService.deleteGarment(id); deprecated...
+            this.outfitService.deleteGarment(id);
             //this.userService.deleteGarment(id); deprecated...
             Garment garment = this.garmentRepository.findById(id).get();
             this.garmentRepository.deleteById(id);
@@ -76,4 +77,17 @@ public class GarmentService {
     }
 
 
+    public void addOutfit(Outfit outfit, Long id) {
+        if (this.garmentRepository.existsById(id)){
+            this.garmentRepository.findById(id).get().addOutfit(outfit);
+            this.garmentRepository.save(this.garmentRepository.findById(id).get());
+        }
+    }
+    @Transactional
+    public void quitOutfit(Outfit outfit, Long id) {
+        if (this.garmentRepository.existsById(id)){
+            this.garmentRepository.findById(id).get().quitOutfit(outfit);
+            this.garmentRepository.save(this.garmentRepository.findById(id).get());
+        }
+    }
 }

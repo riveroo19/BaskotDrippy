@@ -71,6 +71,7 @@ public class OutfitService {
         if (this.outfitRepository.existsById(id) && existUser(outfit.getOwner()) && this.outfitRepository.findById(id).get().getOwner().equals(outfit.getOwner())){ //if the user doesn't exist (or bad introduced), won't change it
             outfit.setId(id); //just in case
             outfit.setAuthor(this.outfitRepository.findById(id).get().getAuthor()); //string owner is setted by default in controllers (specified in postman/forms)
+            outfit.setOutfitElements(this.outfitRepository.findById(id).get().getOutfitElements());
             this.outfitRepository.save(outfit); //override
             //this.userService.modifyOutfit(outfit, outfit.getOwner()); deprecated...
             return outfit;
@@ -80,21 +81,30 @@ public class OutfitService {
 
     //garments functionalities (it will add/delete/modify one garment in any outfit that wears it)
 
+    public void addGarment(Garment garment, Long idOutfit) {
+        if (this.outfitRepository.existsById(idOutfit)){
+            this.outfitRepository.findById(idOutfit).get().addGarment(garment);
+            this.outfitRepository.save(this.outfitRepository.findById(idOutfit).get());
+        }
+    }
 
+    @Transactional
     public void quitGarment (Long garmentId, Long outfitId){
         if (this.outfitRepository.existsById(outfitId)){
             this.outfitRepository.findById(outfitId).get().deleteGarment(garmentId);
+            this.outfitRepository.save(this.outfitRepository.findById(outfitId).get());
         }
     }
 
 
-    /*public void deleteGarment (Long garmentId){//deprecated
+    public void deleteGarment (Long garmentId){//deprecated
         for (Outfit outfit : outfitRepository.findAll()){
             if (!outfit.getOutfitElements().isEmpty()){
-                outfitRepository.findById(outfit.getId()).get().deleteGarment(garmentId);
+                this.outfitRepository.findById(outfit.getId()).get().deleteGarment(garmentId);
+                this.outfitRepository.save(outfit);
             }
         }
-    }*/
+    }
 
     /*public void modifyGarment(Long id, Garment garment) {//deprecated
         for (Outfit outfit : outfitRepository.findAll()){
@@ -108,6 +118,7 @@ public class OutfitService {
     public boolean existUser(String username){
         return this.userService.getUserById(username) != null; //if it's not null, TRUE, if it is, FALSE
     }
+
 
 
 }

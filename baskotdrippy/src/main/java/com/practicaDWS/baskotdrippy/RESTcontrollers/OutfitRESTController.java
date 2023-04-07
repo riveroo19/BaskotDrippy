@@ -67,7 +67,8 @@ public class OutfitRESTController {
     @PatchMapping("/outfits/{idOutfit}/addGarment/{id}")//by id
     public ResponseEntity<Outfit> addGarment(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
         if (this.outfitService.getOutfitById(idOutfit)!=null && this.garmentService.getGarmentById(id)!=null){
-            this.outfitService.getOutfitById(idOutfit).addGarment(this.garmentService.getGarmentById(id));
+            this.outfitService.addGarment(this.garmentService.getGarmentById(id), idOutfit);
+            this.garmentService.addOutfit(this.outfitService.getOutfitById(idOutfit), id);
             return new ResponseEntity<>(this.outfitService.getOutfitById(idOutfit),HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -77,6 +78,7 @@ public class OutfitRESTController {
     public ResponseEntity<Outfit> quitGarment(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
         if (this.outfitService.getOutfitById(idOutfit)!=null && this.garmentService.getGarmentById(id)!=null){
             this.outfitService.quitGarment(id, idOutfit);
+            this.garmentService.quitOutfit(this.outfitService.getOutfitById(idOutfit), id);
             return new ResponseEntity<>(outfitService.getOutfitById(idOutfit), HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);

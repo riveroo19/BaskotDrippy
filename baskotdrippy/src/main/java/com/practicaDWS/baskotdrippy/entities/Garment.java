@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,7 +26,7 @@ public class Garment {
     private String type; //maybe glasses, t-shirt...
 
     @JsonIgnore
-    @ManyToMany(mappedBy = "outfitElements", cascade = CascadeType.ALL)
+    @ManyToMany(mappedBy = "outfitElements", cascade = CascadeType.REFRESH)
     private List<Outfit> outfits = new ArrayList<>();
 
 
@@ -35,12 +36,14 @@ public class Garment {
         this.type = type;
     }
 
+    @Transactional
     public void addOutfit(Outfit outfit){
         if (!this.outfits.contains(outfit)){
             this.outfits.add(outfit);
         }
     }
 
+    @Transactional
     public void quitOutfit(Outfit outfit){
         this.outfits.remove(outfit);
     }

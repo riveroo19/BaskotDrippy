@@ -5,6 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,10 +27,10 @@ public class Outfit {
     @ManyToOne
     private User author;
 
-    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "outfit_garment",
             joinColumns = @JoinColumn(name = "outfit_id"),
             inverseJoinColumns = @JoinColumn(name = "garment_id"))
+    @ManyToMany(cascade = CascadeType.REFRESH)
     private List<Garment> outfitElements = new ArrayList<>();
 
 
@@ -51,12 +52,14 @@ public class Outfit {
         this.description = description;
     }
 
+    @Transactional
     public void addGarment(Garment garment) {
         if (!this.outfitElements.contains(garment)){
             this.outfitElements.add(garment);
         }
     }
 
+    @Transactional
     public Garment deleteGarment(Long garmentId) {
         for (Garment garment : outfitElements){
             if (garmentId.equals(garment.getId())){

@@ -82,7 +82,7 @@ public class OutfitController {
     @GetMapping("/outfits/{idOutfit}/quitGarment/{id}")
     public String quitGarment(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
         this.outfitService.quitGarment(id, idOutfit);
-        this.garmentService.getGarmentById(id).quitOutfit(this.outfitService.getOutfitById(id));
+        this.garmentService.quitOutfit(this.outfitService.getOutfitById(idOutfit), id);
         String returnvalue = "redirect:/outfits/"+idOutfit;
         return returnvalue;
     }
@@ -97,8 +97,8 @@ public class OutfitController {
     @GetMapping("/outfits/{idOutfit}/{id}/success")
     public String addGarmentSuccess(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
         if (this.outfitService.getOutfitById(idOutfit)!=null && this.garmentService.getGarmentById(id)!=null) {
-            this.outfitService.getOutfitById(idOutfit).addGarment(this.garmentService.getGarmentById(id));
-            this.garmentService.getGarmentById(id).addOutfit(this.outfitService.getOutfitById(idOutfit));
+            this.outfitService.addGarment(this.garmentService.getGarmentById(id), idOutfit);
+            this.garmentService.addOutfit(this.outfitService.getOutfitById(idOutfit), id);
             String returnvalue = "redirect:/outfits/"+idOutfit;
             return returnvalue;
         }
