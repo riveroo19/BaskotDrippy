@@ -28,15 +28,21 @@ public class Garment {
     @ManyToMany(mappedBy = "outfitElements", cascade = CascadeType.ALL)
     private List<Outfit> outfits = new ArrayList<>();
 
-    @PreRemove
-    private void delete(){
-        this.outfits.clear();
-    }
 
     public Garment (String garmentName, String url, String type){
         this.garmentName = garmentName;
         this.url = url;
         this.type = type;
+    }
+
+    public void addOutfit(Outfit outfit){
+        if (!this.outfits.contains(outfit)){
+            this.outfits.add(outfit);
+        }
+    }
+
+    public void quitOutfit(Outfit outfit){
+        this.outfits.remove(outfit);
     }
 
 

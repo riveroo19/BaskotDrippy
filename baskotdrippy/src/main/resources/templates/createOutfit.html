@@ -46,7 +46,7 @@
 </svg></div>
     <form method="post" action="/outfits/createOutfit">
         <div class="mb-3"><input class="form-control form-control form-control form-control" type="text" name="outfitName" placeholder="Nombre" /></div>
-        <input type="hidden" name="authorUsername" value="{{username}}"/>
+        <input type="hidden" name="owner" value="{{username}}"/>
         <div class="mb-3"><textarea class="form-control" name="description" placeholder="Descripcion"></textarea>
 </div>
         <div class="mb-2"><button class="btn btn-primary shadow d-block w-100" type="submit" name="Enviar">Crear</button></div>

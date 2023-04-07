@@ -7,6 +7,7 @@ import com.practicaDWS.baskotdrippy.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Map;
@@ -21,12 +22,12 @@ public class UserService {
     private UserRepository userRepository;
 
     //constructors
-    /*
-    public UserService(){
+    @PostConstruct
+    public void init(){
         createUser(new User("Riverrut", "Javier Rivero", "r1ver00t development :D", "12345secure", "riverrut@gmail.com"));
         createUser(new User("Mr.Shark", "Iván Márquez", "biskot babadingshit", "12345secure", "chark@mail.com"));
         createUser(new User("jvalserac", "Javier Valsera", "ª casabillhardt", "12345secure", "quepazatigre@email.com"));
-    }*/
+    }
 
     //CRUD functionalities
     public Collection<User> getUsers (){
@@ -80,13 +81,12 @@ public class UserService {
         return null;
     }*/
 
-    /*public Outfit deleteOutfit (Long idOutfit, String username){ //will be called by outfitService -> data received in outfit controllers
-        //deprecated since bbdd
+    public Outfit deleteOutfit (Long idOutfit, String username){ //will be called by outfitService -> data received in outfit controllers
         if (this.userRepository.existsById(username)){
             return this.userRepository.findById(username).get().deleteOutfit(idOutfit);
         }
         return null;
-    }*/
+    }
 
     /*public Outfit modifyOutfit(Outfit outfit, String username){ //will be called by outfitService -> data received in outfit controllers
         //deprecated since bbdd

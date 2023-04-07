@@ -36,10 +36,6 @@ public class User {
         this.email = email;
     }
 
-    @PreRemove
-    private void delete(){
-        this.createdOutfits.clear();
-    }
 
 
     public Outfit addOutfit(Outfit outfit){

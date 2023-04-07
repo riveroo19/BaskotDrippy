@@ -7,6 +7,7 @@ import com.practicaDWS.baskotdrippy.repositories.OutfitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Map;
@@ -25,8 +26,10 @@ public class OutfitService {
     UserService userService;
 
     //constructors
-    public OutfitService(){
-
+    @PostConstruct
+    public void init(){
+        createOutfit(new Outfit("ChandalNike", "Que antes era kipsta", "jvalserac"));
+        createOutfit(new Outfit("BOFF", "Que antes era kipsta", "Mr.Shark"));
     }
 
     //CRUD functionalities
@@ -45,6 +48,7 @@ public class OutfitService {
     public Outfit deleteOutfit(Long id){
         if (this.outfitRepository.existsById(id)){
             Outfit outfit = this.outfitRepository.findById(id).get();
+            this.userService.deleteOutfit(id, outfit.getOwner());
             this.outfitRepository.deleteById(id); //cascade will delete those rows where this outfit appear
             //this.userService.deleteOutfit(id, outfit.getOwner()); deprecated...
             return outfit;

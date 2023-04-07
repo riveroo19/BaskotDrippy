@@ -32,11 +32,6 @@ public class Outfit {
             inverseJoinColumns = @JoinColumn(name = "garment_id"))
     private List<Garment> outfitElements = new ArrayList<>();
 
-    @PreRemove
-    private void delete(){
-        this.author.deleteOutfit(id);
-        this.outfitElements.clear();
-    }
 
     public Outfit(String outfitName, String description, String owner){
         this.outfitName = outfitName;

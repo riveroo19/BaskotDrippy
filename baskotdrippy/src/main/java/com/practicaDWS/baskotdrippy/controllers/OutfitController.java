@@ -49,13 +49,13 @@ public class OutfitController {
     }
 
     @PostMapping("/outfits/createOutfit")
-    public String createOutfit(@RequestParam("outfitName") String outfitName, @RequestParam("authorUsername") String authorUsername, @RequestParam("description") String description){
+    public String createOutfit(@RequestParam("outfitName") String outfitName, @RequestParam("owner") String owner, @RequestParam("description") String description){
         if (outfitName.length()!=0){
-            Outfit outfit= this.outfitService.createOutfit(new Outfit(outfitName, description, authorUsername));
+            Outfit outfit= this.outfitService.createOutfit(new Outfit(outfitName, description, owner));
             if (outfit==null){
                 return "redirect:/error";
             }
-            String returnvalue = "redirect:/users/" + authorUsername;
+            String returnvalue = "redirect:/users/" + owner;
             return returnvalue;
         }
         return "redirect:/error";
@@ -70,18 +70,19 @@ public class OutfitController {
 
     @GetMapping("/outfits/modifySuccess")
     public String modifySuccess(@RequestParam("id") Long id, @RequestParam("outfitName") String outfitName,
-                                @RequestParam("authorUsername") String authorUsername, @RequestParam("description") String description){
-        Outfit outfit = this.outfitService.modifyOutfit(id, new Outfit(outfitName, description, authorUsername));
+                                @RequestParam("owner") String owner, @RequestParam("description") String description){
+        Outfit outfit = this.outfitService.modifyOutfit(id, new Outfit(outfitName, description, owner));
         if (outfit==null){
             return "redirect:/error";
         }
-        String returnvalue = "redirect:/users/" + authorUsername;
+        String returnvalue = "redirect:/users/" + owner;
         return returnvalue;
     }
 
     @GetMapping("/outfits/{idOutfit}/quitGarment/{id}")
     public String quitGarment(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
         this.outfitService.quitGarment(id, idOutfit);
+        this.garmentService.getGarmentById(id).quitOutfit(this.outfitService.getOutfitById(id));
         String returnvalue = "redirect:/outfits/"+idOutfit;
         return returnvalue;
     }
@@ -97,6 +98,7 @@ public class OutfitController {
     public String addGarmentSuccess(@PathVariable("idOutfit") Long idOutfit, @PathVariable("id") Long id){
         if (this.outfitService.getOutfitById(idOutfit)!=null && this.garmentService.getGarmentById(id)!=null) {
             this.outfitService.getOutfitById(idOutfit).addGarment(this.garmentService.getGarmentById(id));
+            this.garmentService.getGarmentById(id).addOutfit(this.outfitService.getOutfitById(idOutfit));
             String returnvalue = "redirect:/outfits/"+idOutfit;
             return returnvalue;
         }

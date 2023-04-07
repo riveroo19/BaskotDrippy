@@ -5,6 +5,7 @@ import com.practicaDWS.baskotdrippy.repositories.GarmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.Map;
@@ -26,8 +27,10 @@ public class GarmentService {
     //UserService userService;
 
     //constructors
-    public GarmentService(){
-        //createGarment(new Garment("airforce1", "nike.com", "zapatillas"));
+    public void init(){
+        createGarment(new Garment("airforce1", "nike.com", "zapatillas"));
+        createGarment(new Garment("airforce2", "nike.com", "zapatillas"));
+        createGarment(new Garment("chandal op", "bershka.es", "pantalones"));
     }
 
 
