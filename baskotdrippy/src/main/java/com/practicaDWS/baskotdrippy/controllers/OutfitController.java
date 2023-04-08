@@ -3,6 +3,7 @@ package com.practicaDWS.baskotdrippy.controllers;
 
 import com.practicaDWS.baskotdrippy.entities.Garment;
 import com.practicaDWS.baskotdrippy.entities.Outfit;
+import com.practicaDWS.baskotdrippy.queries.QuerySearchOutfit;
 import com.practicaDWS.baskotdrippy.services.GarmentService;
 import com.practicaDWS.baskotdrippy.services.OutfitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class OutfitController {
     OutfitService outfitService;
     @Autowired
     GarmentService garmentService;
+    @Autowired
+    QuerySearchOutfit querySearchOutfit;
 
     @GetMapping("/outfits")
     public String getOutfits(Model model){
@@ -105,5 +108,10 @@ public class OutfitController {
         return "redirect:/error";
     }
 
+    @GetMapping("/searchOutfits")
+    public String searchOutfit(Model model, @RequestParam String search){
+        model.addAttribute("outfits", this.querySearchOutfit.searchByWord(search));
+        return "showOutfits";
+    }
 
 }

@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abyssinica+SIL&amp;display=swap">
+    <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="assets/css/NZButtonAddDelete-2.css">
     <link rel="stylesheet" href="assets/css/Pretty-User-List-.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
@@ -34,7 +36,16 @@
     <section class="py-5">
         <h1 class="text-center text-dark shadow-lg"><strong>Usuarios</strong></h1>
     </section>
-</section></div>
+</section>
+            <div class="row padMar"><form action="searchUsers" method="get">
+<div class="col offset-xl-2 padMar">
+    <div class="d-flex flex-grow-1 flex-fill col-12 col-md-9 mb-2 mb-md-0"><input class="form-control-lg d-flex flex-grow-1 flex-fill form-control" type="search" name="search" style="background: rgb(255,248,240);border-radius: 50px;color: var(--bs-orange);" placeholder="Busque usuarios..." />
+        <div class="col-auto col-md-auto"><button class="btn btn-primary btn-lg" type="submit" style="background: rgb(235,209,182);border-color: #a785dc;border-radius: 10px;"><i class="fas fa-search"></i></button></div>
+    </div>
+</div>
+</form>
+<div class="mb-5"></div></div>
+        </div>
     </div>
     <footer class="bg-primary-gradient"></footer>
     <ul class="list-group"></ul>
@@ -47,6 +58,7 @@
 </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>
+    <script src="assets/js/button-materialize-materialize.min.js"></script>
 </body>
 
 </html>

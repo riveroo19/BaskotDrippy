@@ -1,6 +1,7 @@
 package com.practicaDWS.baskotdrippy.controllers;
 
 import com.practicaDWS.baskotdrippy.entities.Garment;
+import com.practicaDWS.baskotdrippy.queries.QuerySearchGarment;
 import com.practicaDWS.baskotdrippy.services.GarmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +13,8 @@ public class GarmentController {
 
     @Autowired
     GarmentService garmentService;
+    @Autowired
+    QuerySearchGarment querySearchGarment;
 
     @GetMapping("/garments")
     public String getUsers(Model model){
@@ -64,5 +67,10 @@ public class GarmentController {
         return returnvalue;
     }
 
+    @GetMapping("/searchGarments")
+    public String searchOutfit(Model model, @RequestParam String search){
+        model.addAttribute("garments", this.querySearchGarment.searchByWord(search));
+        return "showGarments";
+    }
 
 }

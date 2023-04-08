@@ -2,6 +2,7 @@ package com.practicaDWS.baskotdrippy.controllers;
 
 import com.practicaDWS.baskotdrippy.entities.Outfit;
 import com.practicaDWS.baskotdrippy.entities.User;
+import com.practicaDWS.baskotdrippy.queries.QuerySearchUser;
 import com.practicaDWS.baskotdrippy.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,8 @@ public class UserController {
 
     @Autowired
     UserService userService;
+    @Autowired
+    QuerySearchUser querySearchUser;
 
     //extra functionalities
 
@@ -99,6 +102,12 @@ public class UserController {
     public String createOutfit(Model model, @PathVariable("username") String username){
         model.addAttribute("username", username);
         return "createOutfit";
+    }
+
+    @GetMapping("/searchUsers")
+    public String searchUser(Model model, @RequestParam String search){
+        model.addAttribute("users", this.querySearchUser.searchByWord(search));
+        return "showUsers";
     }
 
 
