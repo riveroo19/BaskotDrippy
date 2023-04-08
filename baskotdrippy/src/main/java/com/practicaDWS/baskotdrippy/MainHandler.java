@@ -30,7 +30,7 @@ public class MainHandler {
         model.addAttribute("users", this.querySearchUser.searchByWord(search));
         model.addAttribute("outfits", this.querySearchOutfit.searchByWord(search));
         model.addAttribute("garments", this.querySearchGarment.searchByWord(search));
-        
+
         return "showEverything";
     }
 
