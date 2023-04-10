@@ -4,6 +4,7 @@ import com.practicaDWS.baskotdrippy.entities.Garment;
 import com.practicaDWS.baskotdrippy.entities.Outfit;
 import com.practicaDWS.baskotdrippy.entities.User;
 import com.practicaDWS.baskotdrippy.repositories.UserRepository;
+import org.owasp.html.Sanitizers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class UserService {
 
     public User createUser (User user){ //values set in controllers
         if (!this.userRepository.existsById(user.getUsername())){
+            user.setUsername(Sanitizers.FORMATTING.sanitize(user.getUsername()));
             this.userRepository.save(user);
             return user;
         }
