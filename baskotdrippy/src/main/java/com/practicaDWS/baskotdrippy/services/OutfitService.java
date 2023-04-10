@@ -27,11 +27,11 @@ public class OutfitService {
     UserService userService;
 
     //constructors
-    @PostConstruct
+    /*@PostConstruct
     public void init(){
         createOutfit(new Outfit("ChandalNike", "Que antes era kipsta", "jvalserac"));
         createOutfit(new Outfit("BOFF", "Que antes era kipsta", "Mr.Shark"));
-    }
+    }*/
 
     //CRUD functionalities
     public Collection<Outfit> getOutfits (){

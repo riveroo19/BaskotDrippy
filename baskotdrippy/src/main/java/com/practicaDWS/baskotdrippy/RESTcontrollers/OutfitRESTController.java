@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Collection;
 
+
+
 @RestController
 @RequestMapping("/api")
 public class OutfitRESTController {
@@ -39,7 +41,7 @@ public class OutfitRESTController {
     public ResponseEntity<Outfit> deleteOutfit(@PathVariable("id") Long id){
         Outfit outfit = this.outfitService.deleteOutfit(id);
         if (outfit!=null){
-            return new ResponseEntity<>(outfit, HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }

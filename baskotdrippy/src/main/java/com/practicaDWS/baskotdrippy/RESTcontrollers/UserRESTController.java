@@ -38,6 +38,7 @@ public class UserRESTController {
     public ResponseEntity<User> deleteUser(@PathVariable("username") String username){
         User user = this.userService.deleteUser(username);
         if (user!=null){
+            user.getCreatedOutfits().clear();
             return new ResponseEntity<>(user, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
