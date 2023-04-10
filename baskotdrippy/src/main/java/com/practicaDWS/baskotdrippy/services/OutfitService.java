@@ -1,5 +1,6 @@
 package com.practicaDWS.baskotdrippy.services;
 
+import org.owasp.html.Sanitizers;
 import com.practicaDWS.baskotdrippy.entities.Garment;
 import com.practicaDWS.baskotdrippy.entities.Outfit;
 import com.practicaDWS.baskotdrippy.entities.User;
@@ -58,6 +59,7 @@ public class OutfitService {
 
     public Outfit createOutfit(Outfit outfit){ //values set in controllers
         if (existUser(outfit.getOwner())){
+            outfit.setDescription(Sanitizers.FORMATTING.sanitize(outfit.getDescription()));
             outfit.setAuthor(userService.getUserById(outfit.getOwner())); //controllers set
             this.outfitRepository.save(outfit);
             //this.userService.addOutfit(outfit); deprecated...
@@ -72,6 +74,7 @@ public class OutfitService {
             outfit.setId(id); //just in case
             outfit.setAuthor(this.outfitRepository.findById(id).get().getAuthor()); //string owner is setted by default in controllers (specified in postman/forms)
             outfit.setOutfitElements(this.outfitRepository.findById(id).get().getOutfitElements());
+            outfit.setDescription(Sanitizers.FORMATTING.sanitize(outfit.getDescription()));
             this.outfitRepository.save(outfit); //override
             //this.userService.modifyOutfit(outfit, outfit.getOwner()); deprecated...
             return outfit;

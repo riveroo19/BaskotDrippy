@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="../../assets/css/NZButtonAddDelete-2.css">
     <link rel="stylesheet" href="../../assets/css/Pretty-User-List-.css">
     <link rel="stylesheet" href="../../assets/css/style.css">
+    <script src="https://cdn.ckeditor.com/4.18.0/standard/ckeditor.js"></script>
 </head>
 
 <body>
@@ -47,7 +48,10 @@
         <input type="hidden" name="id" value="{{id}}"/>
         <div class="mb-3"><input class="form-control form-control form-control form-control" type="text" name="outfitName" placeholder="Nombre ({{outfitName}})" /></div>
         <input type="hidden" name="owner" value="{{owner}}"/>
-        <div class="mb-3"><textarea class="form-control" name="description" placeholder="Descripcion ({{description}})"></textarea>
+        <div class="mb-3"><textarea class="form-control" name="description" placeholder="Descripcion"></textarea>
+            <script>
+                CKEDITOR.replace( 'description' );
+            </script>
 </div>
         <div class="mb-2"><button class="btn btn-primary shadow d-block w-100" type="submit" name="Enviar">Modificar</button></div>{{/outfit}}
     </form>
