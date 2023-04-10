@@ -83,7 +83,7 @@ public class UserController {
         return "updateUser";
     }
 
-    @GetMapping("/users/modifySuccess")
+    @PostMapping("/users/modifySuccess")
     public String modifySuccess(@RequestParam("username") String username, @RequestParam("email") String email, @RequestParam("fullname") String fullname,
                                 @RequestParam("bio") String bio,  @RequestParam("password") String password, @RequestParam("confirm") String confirm, @RequestParam("confirm1") String confirm1){
         if (!confirm.equals(confirm1) || !password.equals(this.userService.getUserById(username).getPassword())){
