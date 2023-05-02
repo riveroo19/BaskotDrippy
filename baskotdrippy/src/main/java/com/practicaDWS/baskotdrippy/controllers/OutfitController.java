@@ -118,7 +118,7 @@ public class OutfitController {
         return "redirect:/error";
     }
 
-    @GetMapping("/outfits/modifySuccess")
+    @PostMapping("/outfits/modifySuccess")
     public String modifySuccess(@RequestParam("id") Long id, @RequestParam("outfitName") String outfitName,
                                 @RequestParam("owner") String owner, @RequestParam("description") String description){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();

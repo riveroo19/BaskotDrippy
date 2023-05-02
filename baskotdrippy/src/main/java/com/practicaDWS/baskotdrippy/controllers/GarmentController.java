@@ -56,6 +56,7 @@ public class GarmentController {
         Garment garment = this.garmentService.getGarmentById(id);
         if (garment!=null){
             if (auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN"))){
+                this.garmentService.deleteGarment(id);
                 return "deletionSuccess";
             }
         }
@@ -105,7 +106,7 @@ public class GarmentController {
         return "redirect:/error";
     }
 
-    @GetMapping("/garments/modifySuccess")
+    @PostMapping("/garments/modifySuccess")
     public String modifySuccess(@RequestParam("id") Long id, @RequestParam("garmentName") String garmentName, @RequestParam("type") String type, @RequestParam("url") String url){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN"))){

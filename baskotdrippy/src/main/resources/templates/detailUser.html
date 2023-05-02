@@ -82,7 +82,11 @@
     <div class="row">
         {{#isSameUser}}<div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="/users/{{username}}/createOutfit"><i class="fa fa-star"></i>Crear</a></div>{{/isSameUser}}
     </div><br><br>
-    {{#isSameUser}}<div class="align-content-center"><a  href="/logout" onclick="return confirm('¿Seguro que quieres cerrar sesión?')">Cerrar sesión</a> </div>{{/isSameUser}}
+    {{#isSameUser}}<div class="align-content-center">
+        <form method="post" action="/logout">
+            <input type="hidden" name="_csrf" value="{{token}}"/>
+            <button class="dropdown-item"  style="color: var(--bs-red);padding: 0px;" type="submit">Cerrar Sesión</button>
+        </form></div>{{/isSameUser}}
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bold-and-bright.js"></script>
     <script src="../assets/js/button-materialize-materialize.min.js"></script>
