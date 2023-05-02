@@ -3,17 +3,12 @@ package com.practicaDWS.baskotdrippy.services;
 import org.owasp.html.Sanitizers;
 import com.practicaDWS.baskotdrippy.entities.Garment;
 import com.practicaDWS.baskotdrippy.entities.Outfit;
-import com.practicaDWS.baskotdrippy.entities.User;
 import com.practicaDWS.baskotdrippy.repositories.OutfitRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.Collection;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicLong;
 
 @Service
 public class OutfitService {

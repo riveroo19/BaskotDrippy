@@ -16,6 +16,12 @@ public class GarmentController {
     @Autowired
     QuerySearchGarment querySearchGarment;
 
+    public void init(){
+        garmentService.createGarment(new Garment("airforce1", "nike.com", "zapatillas"));
+        garmentService.createGarment(new Garment("airforce2", "nike.com", "zapatillas"));
+        garmentService.createGarment(new Garment("chandal op", "bershka.es", "pantalones"));
+    }
+
     @GetMapping("/garments")
     public String getUsers(Model model){
         model.addAttribute("garments", this.garmentService.getGarments());

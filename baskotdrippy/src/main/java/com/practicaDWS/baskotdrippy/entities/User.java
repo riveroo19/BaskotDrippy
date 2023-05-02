@@ -1,15 +1,12 @@
 package com.practicaDWS.baskotdrippy.entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @Entity
 @Data
@@ -28,6 +25,9 @@ public class User {
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Outfit> createdOutfits = new ArrayList<>();
 
+    @ElementCollection(fetch = FetchType.EAGER)
+    private List<String> roles;
+
     public User(String username, String fullname, String bio, String password, String email){
         this.username = username;
         this.password = password;
@@ -36,6 +36,15 @@ public class User {
         this.email = email;
     }
 
+
+    public User(String username, String fullname, String bio, String password, String email, List<String> roles){
+        this.username = username;
+        this.password = password;
+        this.bio = bio;
+        this.fullname = fullname;
+        this.email = email;
+        this.roles = roles;
+    }
 
 
     public Outfit addOutfit(Outfit outfit){
