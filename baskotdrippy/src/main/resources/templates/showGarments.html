@@ -56,7 +56,7 @@
         <div class="mb-5"></div>
 </div>
     <div class="row" >
-        <div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="createGarment.html"><i class="fa fa-star"></i>Crear</a></div>
+        {{#isLogged}}<div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="/garments/createGarment"><i class="fa fa-star"></i>Crear</a></div>{{/isLogged}}
     </div>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="assets/js/bold-and-bright.js"></script>

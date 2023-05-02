@@ -13,4 +13,7 @@ public interface QuerySearchUser extends JpaRepository<User, String> {
             "or (fullname LIKE CONCAT('%', :search, '%')) or (bio LIKE CONCAT('%', :search, '%'))", nativeQuery = true)
     List<User> searchByWord(@Param("search") String search);
 
+    @Query(value = "SELECT * FROM user WHERE username NOT IN (SELECT user_username FROM user_roles WHERE roles = 'ADMIN')", nativeQuery = true)
+    List<User> findAllNonAdminUsers();
+
 }

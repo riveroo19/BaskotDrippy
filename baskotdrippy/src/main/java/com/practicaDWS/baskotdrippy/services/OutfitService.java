@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 
 @Service
 public class OutfitService {
@@ -22,11 +23,7 @@ public class OutfitService {
     UserService userService;
 
     //constructors
-    /*@PostConstruct
-    public void init(){
-        createOutfit(new Outfit("ChandalNike", "Que antes era kipsta", "jvalserac"));
-        createOutfit(new Outfit("BOFF", "Que antes era kipsta", "Mr.Shark"));
-    }*/
+
 
     //CRUD functionalities
     public Collection<Outfit> getOutfits (){
@@ -50,6 +47,15 @@ public class OutfitService {
             return outfit;
         }
         return null;
+    }
+
+    @Transactional
+    public void deleteOutfits(){
+        List<Outfit> outfits = this.outfitRepository.findAll();
+        for(Outfit outfit : outfits){
+            this.userService.deleteOutfit(outfit.getId(), outfit.getOwner());
+            this.outfitRepository.delete(outfit);
+        }
     }
 
     public Outfit createOutfit(Outfit outfit){ //values set in controllers

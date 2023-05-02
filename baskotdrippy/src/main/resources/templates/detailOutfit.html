@@ -45,16 +45,22 @@
 </div>
         </div>
     </div><p>Prendas:<p>
-<div class="row user-list"> {{#garments}}
+<div class="row user-list"> {{#garmentsOwner}}
     <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
         <div class="user-container"><a class="user-avatar" href="/garments/{{id}}"><img class="rounded-circle img-fluid" src="../assets/img/prenda.jpg" width="48" height="48"/></a>
             <p class="user-name"><a href="/garments/{{id}}" >{{garmentName}}</a><span>{{type}}</span></p><a class="user-delete" href="/outfits/{{idOutfit}}/quitGarment/{{id}}" onclick="return confirm('¿Seguro que quieres borrar?')"><i class="fa fa-minus"></i></a>
         </div>
-    </div>{{/garments}}
+    </div>{{/garmentsOwner}}
 </div>
+    <div class="row user-list"> {{#garments}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+            <div class="user-container"><a class="user-avatar" href="/garments/{{id}}"><img class="rounded-circle img-fluid" src="../assets/img/prenda.jpg" width="48" height="48"/></a>
+                <p class="user-name"><a href="/garments/{{id}}" >{{garmentName}}</a><span>{{type}}</span></p>
+            </div>
+        </div>{{/garments}}
     <div class="row">
         <div class="col"><div class="row">
-    <div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="/outfits/{{idOutfit}}/addGarment"><i class="fa fa-star"></i>Añadir</a></div>
+    {{#isOwner}}<div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="/outfits/{{idOutfit}}/addGarment"><i class="fa fa-star"></i>Añadir</a></div>{{/isOwner}}
 </div></div>
     </div>
     <footer class="bg-primary-gradient"></footer>

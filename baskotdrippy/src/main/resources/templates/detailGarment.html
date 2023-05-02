@@ -37,9 +37,9 @@
     <h1 class="text-center text-dark shadow-lg"><strong>{{garmentName}}</strong></h1>
 </section>
     <div class="container">
-        <div class="row"><div class="col-md-4"><a class="waves-effect waves-light btn" href="/garments/updateGarment/{{id}}">Modificar</a></div>
+        <div class="row"><div class="col-md-4">{{#isAdmin}}<a class="waves-effect waves-light btn" href="/garments/updateGarment/{{id}}">Modificar</a>{{/isAdmin}}</div>
             <div class="col-md-4"><img src="../assets/img/prenda.jpg" width="227" height="138"></div>
-            <div class="col-md-4"><a class="waves-effect waves-light btn" href="/garments/deleteGarment/{{id}}" onclick="return confirm('¿Seguro que quieres borrar?')">Borrar</a></div>
+            <div class="col-md-4">{{#isAdmin}}<a class="waves-effect waves-light btn" href="/garments/deleteGarment/{{id}}" onclick="return confirm('¿Seguro que quieres borrar?')">Borrar</a>{{/isAdmin}}</div>
         </div>
     </div>
     <div class="btn-group" role="group" style="font-size: 11PX;margin-top: 10PX;"></div>

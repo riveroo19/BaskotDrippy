@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicLong;
@@ -53,6 +54,14 @@ public class GarmentService {
             return garment;
         }
         return null;
+    }
+    @Transactional
+    public void deleteGarments() {
+        List<Garment> garments = this.garmentRepository.findAll();
+        for (Garment garment : garments) {
+            this.outfitService.deleteGarment(garment.getId());
+            this.garmentRepository.delete(garment);
+        }
     }
 
     public Garment createGarment(Garment garment){

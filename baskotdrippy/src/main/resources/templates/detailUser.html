@@ -34,8 +34,7 @@
             </div>
         </div>
     </nav><section class="py-5">
-    {{#user}}
-    <h1 class="text-center text-dark shadow-lg"><strong>{{username}}</strong></h1>
+    <h1 class="text-center text-dark shadow-lg">{{#isAdmin}}<a href="/admin">{{/isAdmin}}<strong>{{username}}</strong></h1>
 </section>
     <div class="container">
         <div class="row">
@@ -47,35 +46,43 @@
     </div>
     <div class="btn-group" role="group" style="font-size: 11PX;margin-top: 10PX;"></div>
     <div class="container">
-        <div class="row"><div class="col-md-4"><a class="waves-effect waves-light btn" href="/users/updateUser/{{username}}">Modificar</a></div><div class="col-md-4">
+        <div class="row"><div class="col-md-4">{{#isSameUser}}<a class="waves-effect waves-light btn" href="/users/updateUser/{{username}}">Modificar</a>{{/isSameUser}}</div><div class="col-md-4">
     <h2>{{username}}: {{fullname}}</h2>
 </div>
-            <div class="col-md-4"><a class="waves-effect waves-light btn" href="/users/deleteUser/{{username}}" onclick="return confirm('¿Seguro que quieres borrar?')">Borrar</a></div>
+            <div class="col-md-4">{{#isSameUser}}<a class="waves-effect waves-light btn" href="/users/deleteUser/{{username}}" onclick="return confirm('¿Seguro que quieres borrar?')">Borrar</a>{{/isSameUser}}</div>
         </div>
         <div class="row">
             <div class="col-md-6">
                 <p style="font-family: 'Abyssinica SIL', serif;"><br>{{bio}}</p>
             </div>
             <div class="col-md-6">
-                <p style="font-family: 'Abyssinica SIL', serif;"><br>Contact: {{email}} {{/user}}</p>
+                <p style="font-family: 'Abyssinica SIL', serif;"><br>Contact: {{email}}</p>
             </div>
         </div>
-    </div><p>Outfits:<p>
-<div class="row user-list"> {{#outfits}}    
-    <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
-        <div class="user-container"><a class="user-avatar" href="/outfits/{{id}}"><img class="rounded-circle img-fluid" src="../assets/img/gafas.png" width="48" height="48"/></a>
-            <p class="user-name"><a href="/outfits/{{id}}">{{outfitName}}</a><span>Baskot Drippy</span></p><a class="user-delete" href="/outfits/deleteOutfit/{{id}}" onclick="return confirm('¿Seguro que quieres borrar?')"><i class="fa fa-remove"></i></a>
-        </div>
-        <a role="button" style="color: #0B0B0;font-size: 13PX;" href="/outfits/updateOutfit/{{id}}">Modificar</a>
-    </div>{{/outfits}}
-        <div class="mb-5"></div>
-</div>
+    </div><p>Outfits:<p> <!-- si es el mismo usuario mostrará esto, si no no-->
+    <div class="row user-list"> {{#outfitsSameUser}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+            <div class="user-container"><a class="user-avatar" href="/outfits/{{id}}"><img class="rounded-circle img-fluid" src="../assets/img/gafas.png" width="48" height="48"/></a>
+                <p class="user-name"><a href="/outfits/{{id}}">{{outfitName}}</a><span>Baskot Drippy</span></p><a class="user-delete" href="/outfits/deleteOutfit/{{id}}" onclick="return confirm('¿Seguro que quieres borrar?')"><i class="fa fa-remove"></i></a>
+            </div>
+            <a role="button" style="color: #0B0B0;font-size: 13PX;" href="/outfits/updateOutfit/{{id}}">Modificar</a>
+        </div>{{/outfitsSameUser}}
+    </div>
+    <div class="row user-list"> {{#outfits}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 user-item">
+            <div class="user-container"><a class="user-avatar" href="/outfits/{{id}}"><img class="rounded-circle img-fluid" src="../assets/img/gafas.png" width="48" height="48"/></a>
+                <p class="user-name"><a href="/outfits/{{id}}">{{outfitName}}</a><span>Baskot Drippy</span></p>
+            </div>
+        </div>{{/outfits}}
+    </div>
+    <div class="mb-5"></div>
     <footer class="bg-primary-gradient"></footer>
     <ul class="list-group"></ul>
     <div class="w-100"></div>
     <div class="row">
-        <div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="/users/{{username}}/createOutfit"><i class="fa fa-star"></i>Crear</a></div>
-    </div>
+        {{#isSameUser}}<div class="col-xl-1 offset-xl-1"><a class="btn btn-primary pull-right" role="button" href="/users/{{username}}/createOutfit"><i class="fa fa-star"></i>Crear</a></div>{{/isSameUser}}
+    </div><br><br>
+    {{#isSameUser}}<div class="align-content-center"><a  href="/logout" onclick="return confirm('¿Seguro que quieres cerrar sesión?')">Cerrar sesión</a> </div>{{/isSameUser}}
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="../assets/js/bold-and-bright.js"></script>
     <script src="../assets/js/button-materialize-materialize.min.js"></script>

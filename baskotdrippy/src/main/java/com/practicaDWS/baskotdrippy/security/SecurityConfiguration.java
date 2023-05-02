@@ -47,6 +47,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/users/updateUser/{username}").hasAnyRole("USER", "ADMIN");
         http.authorizeRequests().antMatchers("/users/modifySuccess").hasAnyRole("USER", "ADMIN");
         http.authorizeRequests().antMatchers("/users/{username}/createOutfit").hasAnyRole("USER", "ADMIN");
+        http.authorizeRequests().antMatchers("/deleteUsers").hasRole("ADMIN");
 
         //outfits
         http.authorizeRequests().antMatchers("/outfits").permitAll();
@@ -59,14 +60,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests().antMatchers("/outfits/{idOutfit}/quitGarment/{id}").hasAnyRole("USER", "ADMIN");
         http.authorizeRequests().antMatchers("/outfits/{idOutfit}/addGarment").hasAnyRole("USER", "ADMIN");
         http.authorizeRequests().antMatchers("/outfits/{idOutfit}/{id}/success").hasAnyRole("USER", "ADMIN");
+        http.authorizeRequests().antMatchers("/deleteOutfits").hasRole("ADMIN");
         //garments
         http.authorizeRequests().antMatchers("/garments").permitAll();
         http.authorizeRequests().antMatchers("/searchGarment").permitAll();
         http.authorizeRequests().antMatchers("/garments/{id}").permitAll();
-        http.authorizeRequests().antMatchers("/garments/deleteGarment/{id}").hasAnyRole("USER", "ADMIN");
+        http.authorizeRequests().antMatchers("/garments/deleteGarment/{id}").hasRole("ADMIN");
         http.authorizeRequests().antMatchers("/garments/createGarment").hasAnyRole("USER", "ADMIN");
-        http.authorizeRequests().antMatchers("/garments/updateGarment/{id}").hasAnyRole("USER", "ADMIN");
-        http.authorizeRequests().antMatchers("/garments/modifySuccess").hasAnyRole("USER", "ADMIN");
+        http.authorizeRequests().antMatchers("/garments/updateGarment/{id}").hasRole("ADMIN");
+        http.authorizeRequests().antMatchers("/garments/modifySuccess").hasAnyRole("ADMIN");
+        http.authorizeRequests().antMatchers("/deleteGarments").hasRole("ADMIN");
 
         http.authorizeRequests().antMatchers("/admin").hasRole("ADMIN");
         http.authorizeRequests().antMatchers("/assets/css/**").permitAll();

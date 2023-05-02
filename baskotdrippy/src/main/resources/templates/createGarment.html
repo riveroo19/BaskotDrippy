@@ -5,19 +5,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
     <title>Log in - Brand</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800&amp;display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abyssinica+SIL&amp;display=swap">
-    <link rel="stylesheet" href="assets/css/dh-row-text-image-right.css">
-    <link rel="stylesheet" href="assets/css/NZButtonAddDelete-2.css">
-    <link rel="stylesheet" href="assets/css/Pretty-User-List-.css">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="../assets/css/dh-row-text-image-right.css">
+    <link rel="stylesheet" href="../assets/css/NZButtonAddDelete-2.css">
+    <link rel="stylesheet" href="../assets/css/Pretty-User-List-.css">
+    <link rel="stylesheet" href="../assets/css/style.css">
 </head>
 
 <body>
     <nav class="navbar navbar-light navbar-expand-md sticky-top navbar-shrink py-3" id="mainNav" style="background: rgba(235,209,182,255);">
         <div class="container"><a class="navbar-brand d-flex align-items-center" href="/home"></a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button><a href="index.html"></a>
-            <div class="collapse navbar-collapse" id="navcol-1"><a href="/home"><img src="assets/img/brands/logisho1.jpg" width="215" height="53" /></a>
+            <div class="collapse navbar-collapse" id="navcol-1"><a href="/home"><img src="../assets/img/brands/logisho1.jpg" width="215" height="53" /></a>
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item"></li>
                     <li class="nav-item"><a class="nav-link activate" href="/users"><span style= "color: rgb(0, 0, 1);">Usuarios</span></a></li>
@@ -26,7 +26,7 @@
                     <li class="nav-item"><a class="nav-link" href="/garments"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">Prendas</span></a></li>
                     <li class="nav-item"></li>
                     <li class="nav-item"></li>
-                    <li class="nav-item"><a class="nav-link" href="team.html"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">About</span></a></li>
+                    <li class="nav-item"><a class="nav-link" href="../team.html"><span style="font-weight: normal !important; color: rgb(0, 0, 1);">About</span></a></li>
                 </ul><a class="btn btn-primary" role="button" href="/login"><svg class="bi bi-person" xmlns="http://www.w3.org/2000/svg" width="2em" height="2em" fill="currentColor" viewBox="0 0 16 16">
                     <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"></path>
                 </svg></a>
@@ -47,7 +47,7 @@
     <div class="shadow bs-icon-xl bs-icon-circle bs-icon-primary bs-icon my-4"><svg class="bi bi-dribbble" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
             <path fill-rule="evenodd" d="M8 0C3.584 0 0 3.584 0 8s3.584 8 8 8c4.408 0 8-3.584 8-8s-3.592-8-8-8zm5.284 3.688a6.802 6.802 0 0 1 1.545 4.251c-.226-.043-2.482-.503-4.755-.217-.052-.112-.096-.234-.148-.355-.139-.33-.295-.668-.451-.99 2.516-1.023 3.662-2.498 3.81-2.69zM8 1.18c1.735 0 3.323.65 4.53 1.718-.122.174-1.155 1.553-3.584 2.464-1.12-2.056-2.36-3.74-2.551-4A6.95 6.95 0 0 1 8 1.18zm-2.907.642A43.123 43.123 0 0 1 7.627 5.77c-3.193.85-6.013.833-6.317.833a6.865 6.865 0 0 1 3.783-4.78zM1.163 8.01V7.8c.295.01 3.61.053 7.02-.971.199.381.381.772.555 1.162l-.27.078c-3.522 1.137-5.396 4.243-5.553 4.504a6.817 6.817 0 0 1-1.752-4.564zM8 14.837a6.785 6.785 0 0 1-4.19-1.44c.12-.252 1.509-2.924 5.361-4.269.018-.009.026-.009.044-.017a28.246 28.246 0 0 1 1.457 5.18A6.722 6.722 0 0 1 8 14.837zm3.81-1.171c-.07-.417-.435-2.412-1.328-4.868 2.143-.338 4.017.217 4.251.295a6.774 6.774 0 0 1-2.924 4.573z"></path>
         </svg></div>
-    <form action="/garments/createGarment">
+    <form action="/garments/createGarment" method="post">
         <div class="mb-3"><input class="form-control form-control form-control form-control" type="text" name="garmentName" placeholder="Nombre" /></div>
         <div class="mb-3"><input class="form-control form-control form-control form-control" type="text" name="type" placeholder="Tipo" /></div>
         <div class="mb-3"><input class="form-control form-control form-control form-control" type="text" name="url" placeholder="Url" /></div>
@@ -58,7 +58,7 @@
             </div>
         </div>
         <div class="row clearmargin clearpadding row-image-txt">
-            <div class="col-xs-12 col-sm-6 col-md-6 clearmargin clearpadding col-sm-push-6"><img style="width: 100%;" src="assets/img/ayudanos.jpg" width="597" height="375"></div>
+            <div class="col-xs-12 col-sm-6 col-md-6 clearmargin clearpadding col-sm-push-6"><img style="width: 100%;" src="../assets/img/ayudanos.jpg" width="597" height="375"></div>
             <div class="col-xs-12 col-sm-6 col-md-6 col-sm-pull-6" style="padding: 20px;">
                 <h1>¡Ayúdanos!</h1>
                 <hr>
@@ -68,9 +68,9 @@
         </div>
     </section>
     <footer class="bg-primary-gradient"></footer>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
-    <script src="assets/js/bold-and-bright.js"></script>
-    <script src="assets/js/button-materialize-materialize.min.js"></script>
+    <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="../assets/js/bold-and-bright.js"></script>
+    <script src="../assets/js/button-materialize-materialize.min.js"></script>
 </body>
 
 </html>
