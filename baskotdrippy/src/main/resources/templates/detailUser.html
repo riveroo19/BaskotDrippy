@@ -85,6 +85,8 @@
     {{#isSameUser}}<div class="align-content-center">
         <form method="post" action="/logout">
             <input type="hidden" name="_csrf" value="{{token}}"/>
+            <input type="hidden" name="deleted" value="false">
+            <input type="hidden" name="username" value="{{username}}"/>
             <button class="dropdown-item"  style="color: var(--bs-red);padding: 0px;" type="submit">Cerrar Sesión</button>
         </form></div>{{/isSameUser}}
     <script src="../assets/bootstrap/js/bootstrap.min.js"></script>

@@ -8,11 +8,13 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.csrf.CsrfToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.PostConstruct;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -43,6 +45,18 @@ public class UserController {
             return "redirect:/users/" + auth.getName();
         }
         return "login";
+    }
+
+    @PostMapping("/logout")
+    public String logoutDelete(@RequestParam("deleted") boolean deleted, @RequestParam("username") String username, HttpServletRequest request){
+        if (!deleted){
+            return "redirect:/logout";
+        }else{
+            request.getSession().invalidate();
+            this.userService.deleteUser(username);
+            SecurityContextHolder.getContext().setAuthentication(null);
+            return "redirect:/home";
+        }
     }
 
     /*@PostMapping("/login")
@@ -129,15 +143,17 @@ public class UserController {
     }
 
     @GetMapping("/users/deleteUser/{username}")
-    public String deleteUser(@PathVariable("username") String username){
+    public String deleteUser(@PathVariable("username") String username, HttpServletRequest request){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (!auth.getName().equals("admin")){
-            if (auth.getName().equals(username) || auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){//if it's admin or the user trying to delete is the same as the specified
-                User user = this.userService.deleteUser(username);
-                if (user==null){
-                    return "redirect:/error";
-                }
-                return "redirect:/logout";
+        if (!this.userService.getUserById(username).getRoles().contains("ADMIN") && (auth.getName().equals(username) || auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN")))){//if it's admin or the user trying to delete is the same as the specified
+            User user = this.userService.getUserById(username);
+            if (user==null){
+                return "redirect:/error"; //does not exist
+            }else if (auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN"))){
+                this.userService.deleteUser(username);
+                return "redirect:/users";
+            }else {
+                return logoutDelete(true, username, request);
             }
         }
         return "redirect:/error";
