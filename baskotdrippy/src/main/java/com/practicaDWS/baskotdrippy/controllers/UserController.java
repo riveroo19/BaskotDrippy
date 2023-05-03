@@ -131,12 +131,14 @@ public class UserController {
     @GetMapping("/users/deleteUser/{username}")
     public String deleteUser(@PathVariable("username") String username){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth.getName().equals(username) || auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){//if it's admin or the user trying to delete is the same as the specified
-            User user = this.userService.deleteUser(username);
-            if (user==null){
-                return "redirect:/error";
+        if (!auth.getName().equals("admin")){
+            if (auth.getName().equals(username) || auth.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))){//if it's admin or the user trying to delete is the same as the specified
+                User user = this.userService.deleteUser(username);
+                if (user==null){
+                    return "redirect:/error";
+                }
+                return "redirect:/logout";
             }
-            return "redirect:/logout";
         }
         return "redirect:/error";
     }

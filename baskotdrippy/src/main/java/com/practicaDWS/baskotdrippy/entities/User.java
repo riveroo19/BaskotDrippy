@@ -1,5 +1,6 @@
 package com.practicaDWS.baskotdrippy.entities;
 
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,14 +15,23 @@ import java.util.List;
 @AllArgsConstructor
 public class User {
 
+    public interface UserView{}
+
+    @JsonView({UserView.class, Outfit.OutfitView.class})
     @Id
     private String username; //id
 
+    @JsonView(UserView.class)
     private String fullname;
+    @JsonView(UserView.class)
     private String bio;
+
     private String password;
+
+    @JsonView(UserView.class)
     private String email;
 
+    @JsonView(UserView.class)
     @OneToMany(mappedBy = "author", cascade = CascadeType.ALL)
     private List<Outfit> createdOutfits = new ArrayList<>();
 

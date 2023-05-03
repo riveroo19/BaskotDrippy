@@ -1,6 +1,7 @@
 package com.practicaDWS.baskotdrippy.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,18 @@ import java.util.Map;
 @NoArgsConstructor
 public class Garment {
 
+    public interface GarmentView{}
+
+    @JsonView({GarmentView.class, Outfit.OutfitView.class, User.UserView.class})
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //id
 
+    @JsonView({GarmentView.class, Outfit.OutfitView.class, User.UserView.class})
     private String garmentName;
+    @JsonView({GarmentView.class, Outfit.OutfitView.class, User.UserView.class})
     private String url;
+    @JsonView({GarmentView.class, Outfit.OutfitView.class, User.UserView.class})
     private String type; //maybe glasses, t-shirt...
 
     @JsonIgnore

@@ -1,6 +1,7 @@
 package com.practicaDWS.baskotdrippy.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonView;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -15,18 +16,25 @@ import java.util.List;
 @Entity
 public class Outfit {
 
+    public interface OutfitView{}
+
+    @JsonView({OutfitView.class, User.UserView.class})
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //id
 
+    @JsonView({OutfitView.class, User.UserView.class})
     private String outfitName;
+    @JsonView({OutfitView.class, User.UserView.class})
     private String description;
+    @JsonView({OutfitView.class, User.UserView.class})
     private String owner;
 
     @JsonIgnore
     @ManyToOne
     private User author;
 
+    @JsonView({OutfitView.class, User.UserView.class})
     @JoinTable(name = "outfit_garment",
             joinColumns = @JoinColumn(name = "outfit_id"),
             inverseJoinColumns = @JoinColumn(name = "garment_id"))
