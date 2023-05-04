@@ -9,7 +9,7 @@ Proyecto DWS
 
 # FUNCIONAMIENTO BÁSICO FINAL
 
-1. PENDIENTE DE HACER: INICIO DE SESIÓN CON RRSS, HOSTEAR, CAMBIAR DE VERSIÓN A SPRING 3.0 Y HTTPS.
+1. PENDIENTE DE HACER: INICIO DE SESIÓN CON RRSS, CAMBIAR DE VERSIÓN A SPRING 3.0.
 2. Debes configurar el application.properties si es la primera vez que inicias la aplicación: cambiar el ddl-auto a create si es la primera vez que la inicias,la segunda vez lo cambias a update.
 3. A su vez, cambiar el usuario y contraseña para la instancia en local de mysql. Además tendrás que crear un esquema nuevo al principio de todo llamado dwsF2.
 4. Finalmente, la segunda vez que se ejecute, antes de ello deberías descomentar el constructor @PostConstruct de la clase GarmentController.
