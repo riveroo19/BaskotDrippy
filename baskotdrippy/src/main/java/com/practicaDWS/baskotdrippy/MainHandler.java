@@ -27,7 +27,7 @@ public class MainHandler {
 
     @GetMapping("/")
     public String index(){
-        return "redirect:/home";
+        return "/home";
     }
 
     @GetMapping("/home")

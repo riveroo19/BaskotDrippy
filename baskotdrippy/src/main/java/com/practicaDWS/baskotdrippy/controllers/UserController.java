@@ -42,7 +42,7 @@ public class UserController {
     public String showLogin(){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         if (auth != null && auth.isAuthenticated() && !(auth instanceof AnonymousAuthenticationToken)){
-            return "redirect:/users/" + auth.getName();
+            return "/users/" + auth.getName();
         }
         return "login";
     }

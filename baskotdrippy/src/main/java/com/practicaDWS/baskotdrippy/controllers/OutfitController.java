@@ -52,7 +52,7 @@ public class OutfitController {
         Outfit outfit = this.outfitService.getOutfitById(id);
         if (outfit==null){
             return "redirect:/error";
-        }else {
+        }else if (!outfit.getAuthor().getRoles().contains("ADMIN")){
             boolean isAdmin = auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN"));
             boolean isOwner = auth.getName().equals(outfit.getOwner()) || isAdmin;
             model.addAttribute("outfit", outfit);
@@ -65,6 +65,7 @@ public class OutfitController {
             model.addAttribute("idOutfit", outfit.getId());
             return "detailOutfit";
         }
+        return "redirect:/error";
     }
 
     @GetMapping("/outfits/deleteOutfit/{id}")
