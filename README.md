@@ -7,16 +7,15 @@ Proyecto DWS
 * JAVIER VALSERA CASTRO
 * IVÁN MÁRQUEZ LÓPEZ
 
-# FUNCIONAMIENTO BÁSICO FASE 1
+# FUNCIONAMIENTO BÁSICO FINAL
 
-    1. Creas un usuario; si no está, creado correctamente. (sign up) (si campo usuario está vacío salta error, y si las contraseñas no coinciden también)
-        1.Si está; Devolverá error (descrito) y devuelve la pagina principal
-    2. Hay una opción de pseudo-login: puedes ver si un usuario existe, poniendo su usuario y su contraseña, si existe te devuelve el perfil
-    3. Cualquier usuario puede crear prendas. (en esta fase también pueden borrarlas y modificarlas, en un futuro no). Estas prendas pueden estar en cualquier outfit
-    4. Un usuario puede crear uno o varios outfits asociados a él mismo y añadir o quitar prendas de este.
-    5. Un usuario podrá eliminar y modificar sus outfits, así como sus credenciales (cuidado con las contraseñas, son relativamente importantes)
-    6. Un usuario podrá ser borrado, y se borrarán todos sus outfits.
-    7. Un outfit podrá ser borrado, pero no se eliminarán las prendas que contenga.
-    8. Una prenda podrá ser borrada y se borrarán de todos los outfits que las contengan. (igual con la modificación)
-    9. Si modificas las "credenciales" de un usuario o un outfit, se mantendrán los outfits o prendas que contengan (respectivamente)
-    10. Distinguimos 2 terminos a la hora de modificar: modificar las credenciales de un objeto (nombre...) y el contenido de objetos de este (añadir/quitar/modificar)
+1. PENDIENTE DE HACER: INICIO DE SESIÓN CON RRSS, HOSTEAR, CAMBIAR DE VERSIÓN A SPRING 3.0 Y HTTPS.
+2. Debes configurar el application.properties si es la primera vez que inicias la aplicación: cambiar el ddl-auto a create si es la primera vez que la inicias,la segunda vez lo cambias a update.
+3. A su vez, cambiar el usuario y contraseña para la instancia en local de mysql. Además tendrás que crear un esquema nuevo al principio de todo llamado dwsF2.
+4. Finalmente, la segunda vez que se ejecute, antes de ello deberías descomentar el constructor @PostConstruct de la clase GarmentController.
+5. Una vez hecho esto, en principio debería ir todo correcto.
+6. Hay 3 usuarios predefinidos, vienen en el constructor de la clase UserController, mas el usuario administrador (admin, secure!pass).
+7. Un usuario puede: crear prendas, crear outfits para sí mismo, añadir prendas a su outfit, eliminarlas de su outfit, eliminar o modificar sus credenciales y/o sus outfits. Podrá acceder a todas las páginas que no tengan que ver con alterar objetos que no son de su propiedad, además de no poder a acceder a la página de administrador. Finalmente no podrá consultar el usuario del administrador, ni los objetos que le pertenezcan a este.
+8. Un usuario no registrado podrá ver los outfits, las prendas y navegar por algunas páginas públicas de la web.
+9. Un usuario administrador podrá acceder a todo lo anterior, "violando" cualquier usuario y sus objetos, así como borrar todo desde su página de administración.
+10. Desde la api rest se podrá hacer todo esto mencionado anteriormente, teniendo en cuenta que las respuestas serán objetos en json que representarán la información consultada/modificada/eliminada, según la petición ejecutada.
