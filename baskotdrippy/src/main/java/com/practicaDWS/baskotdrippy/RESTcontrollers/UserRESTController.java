@@ -65,7 +65,7 @@ public class UserRESTController {
     @DeleteMapping("/users/{username}")
     public ResponseEntity<User> deleteUser(@PathVariable("username") String username){
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (checkSession(auth) && !auth.getName().equals("admin")){
+        if (checkSession(auth) && !this.userService.getUserById(username).getRoles().contains("ADMIN")){
             if ((auth.getName().equals(username) || auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN")))){
                 User user = this.userService.deleteUser(username);
                 if (user!=null){
