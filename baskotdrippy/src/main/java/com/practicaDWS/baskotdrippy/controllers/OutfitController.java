@@ -52,7 +52,7 @@ public class OutfitController {
         Outfit outfit = this.outfitService.getOutfitById(id);
         if (outfit==null){
             return "redirect:/error";
-        }else if (!outfit.getAuthor().getRoles().contains("ADMIN")){
+        }else if (!outfit.getAuthor().getRoles().contains("ADMIN") || auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN"))){
             boolean isAdmin = auth.getAuthorities().stream().anyMatch(a->a.getAuthority().equals("ROLE_ADMIN"));
             boolean isOwner = auth.getName().equals(outfit.getOwner()) || isAdmin;
             model.addAttribute("outfit", outfit);
