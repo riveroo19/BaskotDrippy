@@ -1,0 +1,646 @@
+{
+	"info": {
+		"_postman_id": "29647a81-a59a-40df-8c1c-118fbf0503b5",
+		"name": "FASE2 DWS_BASKOTDRIPPY",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "(EXTRA)",
+					"item": [
+						{
+							"name": "ModificarUsuario(borrarOutfit)",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/users/Riverrut/quitOutfit/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"Riverrut",
+										"quitOutfit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModificarUsuario(añadirOutfit)",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"outfitName\": \"ola\",\r\n    \"description\": \"aay\",\r\n    \"owner\":\"Riverrut\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/Riverrut/addOutfit",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"Riverrut",
+										"addOutfit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModificarUsuario(modificarOutfit)",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"outfitName\":\"baskotDripardo\",\r\n    \"description\":\"guapardo\",\r\n    \"authorUsername\":\"Riverrut\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/api/users/Riverrut/modifyOutfit/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"users",
+										"Riverrut",
+										"modifyOutfit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MostrarUsuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jvalseracastro\",\r\n    \"fullname\": \"Javier Valsera\",\r\n    \"bio\": \"ª casabillhardt\",\r\n    \"email\": \"quepazatigre@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MostrarUsuarioPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/jvalserac",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"jvalserac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearUsuario",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"username\": \"Usuario1\",\r\n        \"fullname\": \"a\",\r\n        \"bio\": \"a\",\r\n        \"password\": \"a\",\r\n        \"email\": \"a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarUsuario",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"username\": \"Usuario1\",\r\n        \"fullname\": \"user1\",\r\n        \"bio\": \"bio1\",\r\n        \"password\": \"password1\",\r\n        \"email\": \"email1@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/users/Usuario1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"Usuario1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarUsuario",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/users/Usuario1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"users",
+								"Usuario1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BORRAR TODO (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/deleteUsers",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"deleteUsers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Outfits",
+			"item": [
+				{
+					"name": "EXTRA",
+					"item": [
+						{
+							"name": "ModificarOutfit(añadirPrendaId)",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/outfits/1/addGarment/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"outfits",
+										"1",
+										"addGarment",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModificarOutfit(quitarPrenda)",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8080/api/outfits/1/quitGarment/1",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"api",
+										"outfits",
+										"1",
+										"quitGarment",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MostrarOutfits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/outfits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"outfits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearOutfit",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"outfitName\": \"PAclaSE\",\r\n    \"description\": \"Pa ir guapete a clase no\",\r\n    \"owner\": \"Riverrut\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/outfits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"outfits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MostrarOutfitPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/outfits/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"outfits",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarOutfit",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/outfits/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"outfits",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarOutfit",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"outfitName\":\"outfitName\",\r\n    \"description\": \"description\",\r\n    \"owner\":\"Riverrut\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/outfits/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"outfits",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BORRAR TODO (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/deleteOutfits",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"deleteOutfits"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Garments",
+			"item": [
+				{
+					"name": "MostrarPrendas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/garments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"garments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MostrarPrendaPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/garments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"garments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearPrenda",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"garmentName\": \"Bomber Cuero nike\",\r\n    \"url\": \"nike.com\",\r\n    \"type\": \"Chaquetas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/garments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"garments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarPrendas",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"garmentName\": \"Bomber negra adidas\",\r\n    \"url\": \"adidas.com\",\r\n    \"type\": \"Chaquetas\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/garments/2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"garments",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarPrenda",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/garments/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"garments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BORRAR TODO (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/deleteGarments",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"deleteGarments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
