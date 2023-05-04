@@ -1,0 +1,889 @@
+{
+	"info": {
+		"_postman_id": "29647a81-a59a-40df-8c1c-118fbf0503b5",
+		"name": "FASE 3 (en dominio y con auth)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "(EXTRA)",
+					"item": [
+						{
+							"name": "ModificarUsuario(borrarOutfit)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "secure!pass",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "https://baskotdrippy.xyz/api/users/Riverrut/quitOutfit/1",
+									"protocol": "https",
+									"host": [
+										"baskotdrippy",
+										"xyz"
+									],
+									"path": [
+										"api",
+										"users",
+										"Riverrut",
+										"quitOutfit",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModificarUsuario(añadirOutfit)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "Riverrut",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345secure",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"outfitName\": \"Aprobador de DWS\",\r\n    \"description\": \"Muy drippy\",\r\n    \"owner\":\"Riverrut\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://baskotdrippy.xyz/api/users/Riverrut/addOutfit",
+									"protocol": "https",
+									"host": [
+										"baskotdrippy",
+										"xyz"
+									],
+									"path": [
+										"api",
+										"users",
+										"Riverrut",
+										"addOutfit"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModificarUsuario(modificarOutfit)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "secure!pass",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "admin",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"outfitName\":\"baskotDripardo\",\r\n    \"description\":\"guapardo\",\r\n    \"owner\":\"Riverrut\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://baskotdrippy.xyz/api/users/Riverrut/modifyOutfit/3",
+									"protocol": "https",
+									"host": [
+										"baskotdrippy",
+										"xyz"
+									],
+									"path": [
+										"api",
+										"users",
+										"Riverrut",
+										"modifyOutfit",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MostrarUsuarios",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"username\": \"jvalseracastro\",\r\n    \"fullname\": \"Javier Valsera\",\r\n    \"bio\": \"ª casabillhardt\",\r\n    \"email\": \"quepazatigre@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/users",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MostrarUsuarioPorId",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "12345secure",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "jvalserac",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/users/jvalserac",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"users",
+								"jvalserac"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearUsuario",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"username\": \"Usuario1\",\r\n        \"fullname\": \"a\",\r\n        \"bio\": \"a\",\r\n        \"password\": \"usuario1\",\r\n        \"email\": \"a\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/users",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarUsuario",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n        \"username\": \"Usuario1\",\r\n        \"fullname\": \"user1\",\r\n        \"bio\": \"bio1\",\r\n        \"password\": \"password1\",\r\n        \"email\": \"email1@email.com\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/users/Usuario1",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"users",
+								"Usuario1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarUsuario",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/users/Usuario1",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"users",
+								"Usuario1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BORRAR TODO (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/deleteUsers",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"deleteUsers"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Outfits",
+			"item": [
+				{
+					"name": "EXTRA",
+					"item": [
+						{
+							"name": "ModificarOutfit(añadirPrendaId)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "Riverrut",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345secure",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "https://baskotdrippy.xyz/api/outfits/3/addGarment/1",
+									"protocol": "https",
+									"host": [
+										"baskotdrippy",
+										"xyz"
+									],
+									"path": [
+										"api",
+										"outfits",
+										"3",
+										"addGarment",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "ModificarOutfit(quitarPrenda)",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "Riverrut",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "12345secure",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PATCH",
+								"header": [],
+								"url": {
+									"raw": "https://baskotdrippy.xyz/api/outfits/3/quitGarment/1",
+									"protocol": "https",
+									"host": [
+										"baskotdrippy",
+										"xyz"
+									],
+									"path": [
+										"api",
+										"outfits",
+										"3",
+										"quitGarment",
+										"1"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "MostrarOutfits",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/outfits",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"outfits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearOutfit",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "12345secure",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "jvalserac",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"outfitName\": \"PAclaSE\",\r\n    \"description\": \"Pa ir guapete a clase no\",\r\n    \"owner\": \"jvalserac\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/outfits",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"outfits"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MostrarOutfitPorId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/outfits/2",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"outfits",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarOutfit",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "12345secure",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "jvalserac",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/outfits/4",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"outfits",
+								"4"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarOutfit",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "jvalserac",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345secure",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"outfitName\":\"outfitName\",\r\n    \"description\": \"description\",\r\n    \"owner\":\"jvalserac\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/outfits/5",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"outfits",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BORRAR TODO (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/deleteOutfits",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"deleteOutfits"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Garments",
+			"item": [
+				{
+					"name": "MostrarPrendas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/garments",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"garments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "MostrarPrendaPorId",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "Riverrut",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345secure",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/garments/1",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"garments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CrearPrenda",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "username",
+									"value": "Riverrut",
+									"type": "string"
+								},
+								{
+									"key": "password",
+									"value": "12345secure",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"garmentName\": \"Camiseta del Getafe\",\r\n    \"url\": \"puma.com\",\r\n    \"type\": \"Camiseta\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/garments",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"garments"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "ModificarPrendas",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"garmentName\": \"Chandal del badajoz\",\r\n    \"url\": \"adidas.com\",\r\n    \"type\": \"Chandal\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/garments/1",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"garments",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BorrarPrenda",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/garments/5",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"garments",
+								"5"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "BORRAR TODO (ADMIN)",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "secure!pass",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "https://baskotdrippy.xyz/api/deleteGarments",
+							"protocol": "https",
+							"host": [
+								"baskotdrippy",
+								"xyz"
+							],
+							"path": [
+								"api",
+								"deleteGarments"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
